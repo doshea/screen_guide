@@ -1,18 +1,28 @@
 %table
   %thead
     %tr
+      %th #
       %th Title
-      %th Show
-      %th Season
       %th Air Date
-      %th
+      - if is_logged_in?
+        %th
+      - if is_admin?
+        %th
+        %th
   %tbody
-    - @episodes.each do |episode|
+    - episodes.each do |episode|
       %tr
-        %td= link_to episode.title, edit_admin_episode_path(episode)
-        %td= link_to episode.show.name, edit_admin_show_path(episode.show)
-        %td= episode.season.number
+        %td= episode.number
+        %td= link_to episode.title, episode
         %td= episode.air_date.strftime("%b %d, %Y")
-        %td
-          = link_to admin_episode_path(episode), method: :delete, data: {confirm: "Are you sure you want to delete #{episode.title}?"} do
-            %i.fi-trash
+        - if is_logged_in?
+          %td
+            = form_tag watch_episode_path(episode), remote: true do
+              = check_box_tag :watched, 1, @current_user.episodes.include?(episode), id: nil
+        - if is_admin?
+          %td
+            = link_to edit_admin_episode_path(episode) do
+              %i.fi-pencil
+          %td
+            = link_to admin_episode_path(episode), method: :delete, data: {confirm: "Are you sure you want to delete #{episode.title}?"} do
+              %i.fi-trash

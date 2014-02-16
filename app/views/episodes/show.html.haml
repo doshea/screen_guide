@@ -1,0 +1,8 @@
+%h1 "#{@episode.title}"
+%h4
+  Episode #{@episode.number} of
+  = link_to "Season #{@episode.season.number}", @episode.season
+  of
+  %i= link_to @episode.show.name, @episode.show
+%p
+  Aired: #{@episode.air_date.strftime('%B %d, %Y')}

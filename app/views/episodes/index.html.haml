@@ -1,0 +1,4 @@
+%h1
+  Episodes of Season #{@season.number} of
+  %i= @season.show.name
+= render partial: 'episodes_table', locals: {episodes: @episodes}

@@ -1,0 +1,4 @@
+%h1 #{@show.name} #{@show.year_range}
+- @show.seasons.each do |season|
+  %h4= link_to "Season #{season.number}", season
+  = render partial: 'episodes/episodes_table', locals: {episodes: season.episodes}

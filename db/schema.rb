@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140216051545) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "image"
-    t.boolean  "active"
+    t.boolean  "active",     default: false
   end
 
   create_table "shows_users", force: true do |t|

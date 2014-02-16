@@ -1,0 +1,4 @@
+%h1
+  Season #{@season.number} of
+  %i= link_to @season.show.name, @season.show
+= render partial: 'episodes/episodes_table', locals: {episodes: @season.episodes, hide_season: true, hide_show: true}

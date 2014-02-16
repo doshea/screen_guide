@@ -12,7 +12,11 @@ ScreenGuide4::Application.routes.draw do
   resources :seasons, only: [:show] do
     resources :episodes, only: [:index]
   end
-  resources :episodes, only: [:show]
+  resources :episodes, only: [:show] do
+    member do
+      post :watch
+    end
+  end
   
   namespace :account do
     get '/', to: :show

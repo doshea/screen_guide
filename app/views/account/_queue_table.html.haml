@@ -9,8 +9,10 @@
   %tbody
     - episodes.each do |episode|
       %tr
-        %td= image_tag episode.show.image, class: 'small-image'
-        %td= episode.title
+        %td
+          = link_to episode.show do
+            = image_tag episode.show.image, class: 'small-image'
+        %td= link_to episode.title, episode
         %td.center= link_to episode.season.number, episode.season
         %td.center= link_to episode.number, episode
         %th

@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130618154041) do
+ActiveRecord::Schema.define(version: 20140216041828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "episodes", force: true do |t|
+    t.string   "title"
+    t.integer  "number"
+    t.date     "air_date"
+    t.integer  "season_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "episodes_users", force: true do |t|
+    t.integer "episode_id"
+    t.integer "user_id"
+  end
+
+  create_table "seasons", force: true do |t|
+    t.integer  "number"
+    t.integer  "show_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shows", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "shows_users", force: true do |t|
+    t.integer "show_id"
+    t.integer "user_id"
+  end
 
   create_table "users", force: true do |t|
     t.string   "first_name"

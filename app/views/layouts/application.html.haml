@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %title ScreenGuide4
+    = stylesheet_link_tag    "application", :media => "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    = javascript_include_tag 'foundation5/foundation.min'
+    = javascript_include_tag 'foundation5/modernizr'
+    %header
+    = render partial: 'layouts/nav'
+    .row
+      = yield
+    / Foundation initialization javascript
+    :javascript
+      $(document).foundation(null,null,null,null,true);

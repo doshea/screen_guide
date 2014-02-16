@@ -29,6 +29,11 @@ class Admin::EpisodesController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    episode = Episode.find(params[:id])
+    episode.delete
+  end
+
   private ###
   def admin_episode_params
     params.require(:episode).permit(:title, :number, :air_date)

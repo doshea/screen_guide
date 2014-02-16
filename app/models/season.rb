@@ -12,7 +12,7 @@
 class Season < ActiveRecord::Base
   belongs_to :show
 
-  has_many :episodes
+  has_many :episodes, dependent: :destroy
 
   # default_scope { order(number: :asc) }
 

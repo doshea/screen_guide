@@ -34,6 +34,9 @@ ScreenGuide4::Application.routes.draw do
     resources :users, only: [:index, :edit, :update, :destroy]
     resources :shows, except: [:show, :index] do
       resources :seasons, only: [:new, :create]
+      collection do
+        post :rage_create
+      end
     end
     resources :seasons, except: [:show, :index] do
       resources :episodes, only: [:new, :create]

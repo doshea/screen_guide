@@ -1,2 +1,7 @@
 %h1 New Show
 = render partial: 'form', locals: {editing: false}
+%h3
+= form_tag rage_create_admin_shows_path do
+  = label_tag :rage_id
+  = number_field_tag :rage_id
+  = submit_tag

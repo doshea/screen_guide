@@ -28,6 +28,11 @@ class Admin::SeasonsController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    season = Season.find(params[:id])
+    season.destroy
+  end
+
   private ###
   def admin_season_params
     params.require(:season).permit(:number)

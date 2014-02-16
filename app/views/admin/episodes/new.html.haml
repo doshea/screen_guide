@@ -3,4 +3,4 @@
   = link_to "Season #{@season.number}", @season
   of
   %i= link_to @season.show.name, @season.show
-= render partial: 'form', locals: {editing: true}
+= render partial: 'form', locals: {editing: false}

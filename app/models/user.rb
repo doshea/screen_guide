@@ -17,6 +17,9 @@
 
 class User < ActiveRecord::Base
   has_secure_password
+
+  has_and_belongs_to_many :shows
+  has_and_belongs_to_many :episodes
   
   before_create { generate_token(:auth_token) }
 

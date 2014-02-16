@@ -13,10 +13,10 @@ User.create(
 
 #creates an admin User
 User.create(
-  first_name: 'Chief',
-  last_name: 'Chieferson',
-  email: 'chief@gmail.com',
-  username: 'chief',
+  first_name: 'Dylan',
+  last_name: 'O\'Shea',
+  email: 'doshea@gmail.com',
+  username: 'doshea',
   is_admin: true,
   password: 'qwerty',
   password_confirmation: 'qwerty'

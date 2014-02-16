@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Season
+      %th Episode
+      %th
+  %tbody
+    - episodes.each do |episode|
+      %tr
+        %td= image_tag episode.show.image, class: 'small-image'
+        %td= episode.title
+        %td.center= link_to episode.season.number, episode.season
+        %td.center= link_to episode.number, episode
+        %th
+          = link_to episode.torrent_link do
+            %i.fi-download

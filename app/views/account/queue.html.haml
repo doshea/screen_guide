@@ -1,3 +1,4 @@
 %h1 Queue
-- @episodes.each do |episode|
-  %li= episode.title
+= render partial: 'queue_table', locals: {episodes: @queued}
+%h3 Upcoming
+= render partial: 'queue_table', locals: {episodes: @upcoming}

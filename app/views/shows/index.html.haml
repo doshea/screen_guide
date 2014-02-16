@@ -1,9 +1,9 @@
 %h1 All Shows
 - if is_admin?
-  %p= link_to 'Add Show', new_admin_show_path
+  %p= link_to 'Add Show', new_admin_show_path, class: 'button small'
 %h4 Currently Airing
 = render partial: 'shows_table', locals: {shows: @active}
 %h4 Finished
 = render partial: 'shows_table', locals: {shows: @inactive}
 - if is_admin?
-  %p= link_to 'Add Show', new_admin_show_path
+  %p= link_to 'Add Show', new_admin_show_path, class: 'button small'

@@ -1,9 +1,10 @@
-%table
+= content_tag_for(:table, season) do
   %thead
     %tr
       %th #
       %th Title
       %th Air Date
+      %th
       - if is_logged_in?
         %th
       - if is_admin?
@@ -11,10 +12,13 @@
         %th
   %tbody
     - episodes.each do |episode|
-      %tr
-        %td= episode.number
+      = content_tag_for(:tr, episode) do
+        %td.center= episode.number
         %td= link_to episode.title, episode
         %td= episode.air_date.strftime("%b %d, %Y")
+        %td
+          = link_to episode.torrent_link, target: '_blank' do
+            %i.fi-download
         - if is_logged_in?
           %td
             = form_tag watch_episode_path(episode), remote: true do

@@ -11,6 +11,6 @@
       - if is_admin?
         = link_to edit_admin_season_path(season) do
           %i.fi-pencil
-    = render partial: 'episodes/episodes_table', locals: {episodes: season.episodes}
+    = render partial: 'seasons/season', locals: {season: season}
 - if is_admin?
   %p= link_to 'Add Season', new_admin_show_season_path(@show), class: 'button small'

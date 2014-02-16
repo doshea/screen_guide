@@ -20,6 +20,10 @@ class AccountController < ApplicationController
     @shows = @current_user.shows
   end
 
+  def queue
+    @episodes = Episode.joins(:show).where(shows: {users: {user_id: @current_user.id}})
+  end
+
   private ###
   def profile_params
     params.require(:user).permit(:first_name, :last_name, :image)

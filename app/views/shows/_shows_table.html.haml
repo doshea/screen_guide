@@ -18,16 +18,16 @@
       %tr
         %td= image_tag show.image, class: 'small-image'
         %td= link_to show.name, show
-        %td= link_to show.seasons.count, show_seasons_path(show)
-        %td= show.episodes.count
+        %td.center= link_to show.seasons.count, show_seasons_path(show)
+        %td.center= show.episodes.count
         - air_dates = show.episodes.map{|e| e.air_date}.sort
         %td= air_dates.first.strftime("%b %d, %Y") if air_dates.any?
         %td= air_dates.last.strftime("%b %d, %Y") if air_dates.any?
-        %td
+        %td.center
           - if show.active?
             %i.fi-check
         - if is_logged_in?
-          %td
+          %td.center
             = form_tag watch_show_path(show), remote: true do
               = check_box_tag :watched, 1, @current_user.shows.include?(show), id: nil
         - if is_admin?

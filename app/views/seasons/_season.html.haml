@@ -1,0 +1,4 @@
+- if season.episodes.empty? 
+  No episodes posted. Check back later!
+- else
+  = render partial: 'episodes/episodes_table', locals: {season: season, episodes:season.episodes, hide_season: true, hide_show: true}

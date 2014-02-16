@@ -25,6 +25,7 @@ ScreenGuide4::Application.routes.draw do
     get '/', to: :show
     patch :update
     patch :change_password
+    get :queue
 
     get :shows
   end

@@ -20,4 +20,8 @@ class Episode < ActiveRecord::Base
 
   default_scope { order(number: :asc) }
 
+  def torrent_link
+    "http://www.google.com/#q=#{self.show.name}+torrent+s#{'%02d' % self.season.number}e#{'%02d' % self.number}"
+  end
+
 end

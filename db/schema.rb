@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20140216051545) do
     t.datetime "updated_at"
   end
 
-  create_table "episodes_users", force: true do |t|
+  create_table "episodes_users", id: false, force: true do |t|
     t.integer "episode_id"
     t.integer "user_id"
   end
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140216051545) do
     t.boolean  "active",     default: false
   end
 
-  create_table "shows_users", force: true do |t|
+  create_table "shows_users", id: false, force: true do |t|
     t.integer "show_id"
     t.integer "user_id"
   end

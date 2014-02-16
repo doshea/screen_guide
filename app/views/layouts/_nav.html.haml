@@ -13,6 +13,8 @@
       %li= link_to 'All Shows', shows_path
       %li.divider
       - if @current_user
+        %li= link_to 'Queue', account_queue_path
+        %li.divider        
         %li= link_to 'My Shows', account_shows_path
         %li.divider
         %li= link_to @current_user.username, account_path

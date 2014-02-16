@@ -1,5 +1,5 @@
 %h1 All Shows
-%h4 Active
+%h4 Currently Airing
 = render partial: 'shows_table', locals: {shows: @active}
-%h4 Inactive
+%h4 Finished
 = render partial: 'shows_table', locals: {shows: @inactive}

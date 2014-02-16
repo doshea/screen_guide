@@ -28,8 +28,12 @@ ScreenGuide4::Application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :edit, :update, :destroy]
-    resources :shows, except: [:show, :index]
-    resources :seasons, except: [:show, :index]
+    resources :shows, except: [:show, :index] do
+      resources :seasons, only: [:new, :create]
+    end
+    resources :seasons, except: [:show, :index] do
+      resources :episodes, only: [:new, :create]
+    end
     resources :episodes, except: [:show, :index]
   end
 end

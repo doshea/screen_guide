@@ -1,4 +1,11 @@
 %h1 #{@show.name} #{@show.year_range}
-- @show.seasons.each do |season|
-  %h4= link_to "Season #{season.number}", season
-  = render partial: 'episodes/episodes_table', locals: {episodes: season.episodes}
+- if is_admin?
+  = link_to 'Add Season', new_admin_show_season_path(@show)
+- if @show.seasons.empty?
+  No seasons posted. Check back later!
+- else
+  - @show.seasons.each do |season|
+    %h4= link_to "Season #{season.number}", season
+    = render partial: 'episodes/episodes_table', locals: {episodes: season.episodes}
+- if is_admin?
+  = link_to 'Add Season', new_admin_show_season_path(@show)

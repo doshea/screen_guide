@@ -14,6 +14,6 @@ class Season < ActiveRecord::Base
 
   has_many :episodes
 
-  # default_scope { order(number: :asc) }
+  default_scope { order(number: :asc) }
 
 end

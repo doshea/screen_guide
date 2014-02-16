@@ -21,16 +21,20 @@ class Show < ActiveRecord::Base
 
   def year_range
     air_dates = self.episodes.map{|e| e.air_date}.sort
-    start_year = air_dates.first.year
-    end_year = air_dates.last.year
-    if self.active?
-      end_range = ' - '
-    elsif end_year == start_year
-      end_range = ''
+    if air_dates.empty?
+      "(TBA)"
     else
-      end_range = " - #{end_year}"
+      start_year = air_dates.first.year
+      end_year = air_dates.last.year
+      if self.active?
+        end_range = ' - '
+      elsif end_year == start_year
+        end_range = ''
+      else
+        end_range = " - #{end_year}"
+      end
+      "(#{start_year}#{end_range})"
     end
-    "(#{start_year}#{end_range})"
   end
 
 end

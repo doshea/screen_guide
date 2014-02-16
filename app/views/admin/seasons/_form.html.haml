@@ -1,0 +1,4 @@
+= form_for @season, url: url_for(controller: 'admin/seasons', action: :create) do |f|
+  = f.label :number
+  = f.number_field :number
+  = f.submit

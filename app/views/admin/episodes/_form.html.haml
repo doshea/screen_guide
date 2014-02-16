@@ -1,0 +1,8 @@
+= form_for @episode, url: url_for(controller: 'admin/episodes', action: :create) do |f|
+  = f.label :number
+  = f.number_field :number, value: (@num_guess if @num_guess)
+  = f.label :title
+  = f.text_field :title
+  = f.label :air_date
+  = f.date_field :air_date, value: (@week_guess if @week_guess)
+  = f.submit nil, class: 'button'

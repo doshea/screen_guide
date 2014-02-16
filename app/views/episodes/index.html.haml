@@ -1,4 +1,6 @@
 %h1
-  Episodes of Season #{@season.number} of
-  %i= @season.show.name
+  Episodes of
+  = link_to "Season #{@season.number}", @season
+  of
+  %i= link_to @season.show.name, @season.show
 = render partial: 'episodes_table', locals: {episodes: @episodes}

@@ -1,11 +1,15 @@
 %h1 #{@show.name} #{@show.year_range}
 - if is_admin?
   %p= link_to 'Add Season', new_admin_show_season_path(@show)
-- if @show.seasons.empty?
+- if @seasons.empty?
   No seasons posted. Check back later!
 - else
-  - @show.seasons.each do |season|
-    %h4= link_to "Season #{season.number}", season
+  - @seasons.each do |season|
+    %h4
+      = link_to "Season #{season.number}", season
+      - if is_admin?
+        = link_to edit_admin_season_path(season) do
+          %i.fi-pencil
     = render partial: 'episodes/episodes_table', locals: {episodes: season.episodes}
 - if is_admin?
   %p= link_to 'Add Season', new_admin_show_season_path(@show)

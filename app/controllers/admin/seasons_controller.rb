@@ -16,6 +16,18 @@ class Admin::SeasonsController < ApplicationController
     end
   end
 
+  def edit
+    @season = Season.find(params[:id])
+  end
+
+  def update
+    @season = Season.find(params[:id])
+    if @season
+      @season.update_attributes(admin_season_params)
+    end
+    redirect_to :back
+  end
+
   private ###
   def admin_season_params
     params.require(:season).permit(:number)

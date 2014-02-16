@@ -1,4 +1,4 @@
 %h1
   New Season for
   %i= link_to @show.name, @show
-= render partial: 'form'
+= render partial: 'form', locals: {editing: false}

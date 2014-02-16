@@ -17,6 +17,18 @@ class Admin::EpisodesController < ApplicationController
     end
   end
 
+  def edit
+    @episode = Episode.find(params[:id])
+  end
+
+  def update
+    @episode = Episode.find(params[:id])
+    if @episode
+      @episode.update_attributes(admin_episode_params)
+    end
+    redirect_to :back
+  end
+
   private ###
   def admin_episode_params
     params.require(:episode).permit(:title, :number, :air_date)

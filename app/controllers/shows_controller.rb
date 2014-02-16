@@ -5,7 +5,8 @@ class ShowsController < ApplicationController
   end
 
   def show
-    @show = Show.includes(seasons: :episodes).find(params[:id])
+    @show = Show.find(params[:id])
+    @seasons = @show.seasons.includes(:episodes).order(:number)
   end
 
   def watch

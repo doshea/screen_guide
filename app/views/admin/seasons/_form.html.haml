@@ -1,4 +1,4 @@
-= form_for @season, url: url_for(controller: 'admin/seasons', action: :create) do |f|
+= form_for @season, url: url_for(controller: 'admin/seasons', action: (editing ? :update : :create)) do |f|
   = f.label :number
-  = f.number_field :number, value: ((@num_guess + 1) if @num_guess)
+  = f.number_field :number, value: (@num_guess.present? ? (@num_guess + 1) : @season.number)
   = f.submit nil, class: 'button'

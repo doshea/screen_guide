@@ -16,11 +16,11 @@ class Admin::ShowsController < ApplicationController
   end
 
   def edit
-
+    @show = Show.find(params[:id])
   end
 
   def update
-
+    @show = Show.find(params[:id])
   end
 
   private ###

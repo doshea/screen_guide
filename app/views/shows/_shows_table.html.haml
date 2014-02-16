@@ -32,7 +32,7 @@
               = check_box_tag :watched, 1, @current_user.shows.include?(show), id: nil
         - if is_admin?
           %td
-            - link_to edit_admin_show_path(show) do
+            = link_to edit_admin_show_path(show) do
               %i.fi-pencil 
           %td
             = link_to admin_show_path(show), method: :delete, data: {confirm: "Are you sure you want to delete #{show.name}?"} do

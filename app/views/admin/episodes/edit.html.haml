@@ -1,0 +1,6 @@
+%h1
+  Edit "#{@episode.title}" from
+  = link_to "Season #{@episode.season.number}", @episode.season
+  of
+  %i= link_to @episode.show.name, @episode.show
+= render partial: 'form', locals: {editing: true}

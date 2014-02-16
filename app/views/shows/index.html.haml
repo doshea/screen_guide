@@ -1,0 +1,5 @@
+%h1 All Shows
+%h4 Active
+= render partial: 'shows_table', locals: {shows: @active}
+%h4 Inactive
+= render partial: 'shows_table', locals: {shows: @inactive}

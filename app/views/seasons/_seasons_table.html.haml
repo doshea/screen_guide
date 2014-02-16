@@ -1,0 +1,27 @@
+%table
+  %thead
+    %tr
+      %th Show
+      %th #
+      %th Episodes
+      %th Start Date
+      %th End Date
+      - if is_admin?
+        %th
+        %th
+  %tbody
+    - @seasons.each do |season|
+      %tr
+        %td= link_to season.show.name, edit_admin_show_path(season.show)
+        %td= link_to season.number, edit_admin_season_path(season)
+        - air_dates = season.episodes.map{|e| e.air_date}.sort
+        %td= season.episodes.count
+        %td= air_dates.first.strftime("%b %d, %Y") if air_dates.any?
+        %td= air_dates.last.strftime("%b %d, %Y") if air_dates.any?
+        - if is_admin?
+          %td
+            = link_to edit_admin_season_path(season) do
+              %i.fi-pencil
+          %td
+            = link_to admin_season_path(season), method: :delete, data: {confirm: "Are you sure you want to delete Season #{season.number} of #{season.show.name}?"} do
+              %i.fi-trash

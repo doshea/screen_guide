@@ -1,0 +1,18 @@
+%table
+  %thead
+    %tr
+      %th Title
+      %th Show
+      %th Season
+      %th Air Date
+      %th
+  %tbody
+    - @episodes.each do |episode|
+      %tr
+        %td= link_to episode.title, edit_admin_episode_path(episode)
+        %td= link_to episode.show.name, edit_admin_show_path(episode.show)
+        %td= episode.season.number
+        %td= episode.air_date.strftime("%b %d, %Y")
+        %td
+          = link_to admin_episode_path(episode), method: :delete, data: {confirm: "Are you sure you want to delete #{episode.title}?"} do
+            %i.fi-trash

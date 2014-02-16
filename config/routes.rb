@@ -6,6 +6,13 @@ ScreenGuide4::Application.routes.draw do
   delete '/login' => 'sessions#destroy'
 
   resources :users, only: [:new, :create]
+  resources :shows, only: [:index, :show] do
+    resources :seasons, only: [:index]
+  end
+  resources :seasons, only: [:show] do
+    resources :episodes, only: [:index]
+  end
+  resources :episodes, only: [:show]
   
   namespace :account do
     get '/', to: :show
@@ -16,10 +23,9 @@ ScreenGuide4::Application.routes.draw do
   end
 
   namespace :admin do
-    get '/', to: :index
     resources :users, only: [:index, :edit, :update, :destroy]
-    resources :shows, only: [:index, :edit, :update, :destroy]
-    resources :seasons, only: [:index, :edit, :update, :destroy]
-    resources :episodes, only: [:index, :edit, :update, :destroy]
+    resources :shows, except: [:show, :index]
+    resources :seasons, except: [:show, :index]
+    resources :episodes, except: [:show, :index]
   end
 end

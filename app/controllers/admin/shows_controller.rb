@@ -21,6 +21,10 @@ class Admin::ShowsController < ApplicationController
 
   def update
     @show = Show.find(params[:id])
+    if @show
+      @show.update_attributes(admin_show_params)
+    end
+    redirect_to :back
   end
 
   private ###

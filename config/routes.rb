@@ -8,6 +8,9 @@ ScreenGuide4::Application.routes.draw do
   resources :users, only: [:new, :create]
   resources :shows, only: [:index, :show] do
     resources :seasons, only: [:index]
+    member do
+      post :watch
+    end
   end
   resources :seasons, only: [:show] do
     resources :episodes, only: [:index]

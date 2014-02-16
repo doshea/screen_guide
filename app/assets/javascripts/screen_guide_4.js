@@ -1,12 +1,9 @@
-/* This will contain global javascript for your application */
-$(document).ready(function(){
-  $('input[type=checkbox][name=watched]').on('change', function(){
-    // checked = $(this).get(0).checked;
-    // settings = {
-    //   dataType: 'script',
-    //   type: 'POST',
-    //   url: '/episodes/'+
-    // }
+// Turbolinks-y way of ensuring that this JS is ready
+document.addEventListener('page:change', ready_stuff);
+
+function ready_stuff(){
+  $('body').on('change', 'input[type=checkbox][name=watched]', function(){
     $(this).closest('form').submit();
   })
-});
+}
+

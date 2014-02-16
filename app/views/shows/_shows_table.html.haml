@@ -8,6 +8,8 @@
       %th Start Date
       %th End Date
       %th Active
+      - if is_logged_in?
+        %th
       - if is_admin?
         %th
         %th
@@ -24,6 +26,10 @@
         %td
           - if show.active?
             %i.fi-check
+        - if is_logged_in?
+          %td
+            = form_tag watch_show_path(show), remote: true do
+              = check_box_tag :watched, 1, @current_user.shows.include?(show), id: nil
         - if is_admin?
           %td
             - link_to edit_admin_show_path(show) do

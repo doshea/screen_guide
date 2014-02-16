@@ -3,6 +3,7 @@ class Admin::SeasonsController < ApplicationController
 
   def new
     @show = Show.find(params[:show_id])
+    @num_guess = ((@show.seasons.map{|e| e.number}.max)|| 0)
     @season = Season.new
   end
 

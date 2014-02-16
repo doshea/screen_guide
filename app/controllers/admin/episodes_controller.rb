@@ -3,8 +3,8 @@ class Admin::EpisodesController < ApplicationController
 
   def new
     @season = Season.find(params[:season_id])
-    @num_guess = ((@season.episodes.map{|e| e.number}.max + 1)|| 1)
-    @week_guess = ((@season.episodes.map{|e| e.air_date}.max + 7)|| 1)
+    @num_guess = ((@season.episodes.map{|e| e.number}.max)|| 0)
+    @week_guess = (@season.episodes.map{|e| e.air_date}.max )
     @episode = Episode.new
   end
 

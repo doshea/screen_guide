@@ -25,7 +25,7 @@ class Admin::SeasonsController < ApplicationController
     if @season
       @season.update_attributes(admin_season_params)
     end
-    redirect_to :back
+    redirect_to @season
   end
 
   def destroy

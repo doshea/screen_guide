@@ -54,7 +54,7 @@ class Admin::ShowsController < ApplicationController
     if @show
       @show.update_attributes(admin_show_params)
     end
-    redirect_to :back
+    redirect_to @show
   end
 
   def destroy

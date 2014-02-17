@@ -4,7 +4,7 @@ class EpisodesController < ApplicationController
   end
   def index
     @season = Season.find(params[:season_id])
-    @episodes = @season.episodes
+    @episodes = @season.episodes.by_number
   end
   def watch
     if @current_user

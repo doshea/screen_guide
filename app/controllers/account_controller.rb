@@ -21,8 +21,8 @@ class AccountController < ApplicationController
   end
 
   def queue
-    @queued = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date <= ?", Date.today).order(:air_date)
-    @upcoming = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date > ?", Date.today).order(:air_date)
+    @queued = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date <= ?", Date.today).by_air_date
+    @upcoming = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date > ?", Date.today).by_air_date
   end
 
   private ###

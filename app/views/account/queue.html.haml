@@ -1,4 +1,4 @@
-%h1 Queue
+%h1 Queue (#{@queued.length})
 = render partial: 'queue_table', locals: {episodes: @queued}
 %h3 Upcoming
 = render partial: 'queue_table', locals: {episodes: @upcoming}

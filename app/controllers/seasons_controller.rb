@@ -4,6 +4,6 @@ class SeasonsController < ApplicationController
   end
   def index
     @show = Show.includes(:seasons).find(params[:show_id])
-    @seasons = @show.seasons
+    @seasons = @show.seasons.by_number
   end
 end

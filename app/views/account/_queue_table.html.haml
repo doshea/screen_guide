@@ -5,6 +5,8 @@
       %th Title
       %th Season
       %th Episode
+      -if checkboxes
+        %th
       %th
   %tbody
     - episodes.each do |episode|
@@ -15,6 +17,10 @@
         %td= link_to episode.title, episode
         %td.center= link_to episode.season.number, episode.season
         %td.center= link_to episode.number, episode
-        %th
+        -if checkboxes
+          %td
+            = form_tag watch_episode_path(episode), remote: true do
+              = check_box_tag :watched, 1, @current_user.episodes.include?(episode), id: nil
+        %td
           = link_to episode.torrent_link, target: '_blank' do
             %i.fi-download

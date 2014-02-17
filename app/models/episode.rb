@@ -19,7 +19,7 @@ class Episode < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   scope :by_number, -> { order(number: :asc) }
-  scope :by_air_date, -> { order(air_date: :asc) }
+  scope :by_air_date, -> { order(air_date: :asc, number: :asc) }
 
   def torrent_link
     "http://www.google.com/#q=#{self.show.name}+torrent+s#{'%02d' % self.season.number}e#{'%02d' % self.number}"

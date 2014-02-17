@@ -8,6 +8,7 @@
 #  updated_at :datetime
 #  image      :text
 #  active     :boolean          default(FALSE)
+#  rage_id    :integer
 #
 
 class Show < ActiveRecord::Base
@@ -18,6 +19,9 @@ class Show < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+
+  validates :name,
+    uniqueness: true
 
   def year_range
     air_dates = self.episodes.map{|e| e.air_date}.sort

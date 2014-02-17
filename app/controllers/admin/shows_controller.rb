@@ -18,7 +18,8 @@ class Admin::ShowsController < ApplicationController
   def rage_create
     new_show_data = HTTParty.get("http://services.tvrage.com/feeds/episode_list.php?sid=#{params[:rage_id]}")['Show']
     new_show = Show.create(
-      name: new_show_data['name']
+      name: new_show_data['name'],
+      rage_id: params[:rage_id]
     )
     total_seasons = new_show_data['totalseasons'].to_i
 

@@ -60,9 +60,13 @@ class User < ActiveRecord::Base
     allow_blank: true,
     length: { minimum: MIN_NAME_LENGTH, message: ": Should be at least #{MIN_NAME_LENGTH} characters"}
 
-    def generate_token(column)
-      begin
-        self[column] = SecureRandom.urlsafe_base64
-      end while User.exists?(column => self[column]) #may need a colon
-    end
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column]) #may need a colon
+  end
+
+  def has_watched?(season)
+    (season.episodes - self.episodes).empty?
+  end
 end

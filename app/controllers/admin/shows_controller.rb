@@ -66,7 +66,7 @@ class Admin::ShowsController < ApplicationController
 
   private ###
   def admin_show_params
-    params.require(:show).permit(:name, :active, :image)
+    params.require(:show).permit(:name, :active, :image, :rage_id)
   end
   def rage_show_params
     params.require(:show).permit(:name, :rage_id)

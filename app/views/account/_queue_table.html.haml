@@ -10,7 +10,7 @@
       %th
   %tbody
     - episodes.each do |episode|
-      %tr
+      = content_tag_for(:tr, episode) do
         %td
           = link_to episode.show do
             = image_tag episode.show.image, class: 'small-image'
@@ -21,6 +21,7 @@
           %td
             = form_tag watch_episode_path(episode), remote: true do
               = check_box_tag :watched, 1, @current_user.episodes.include?(episode), id: nil
+              = hidden_field_tag :return, true
         %td
           = link_to episode.torrent_link, target: '_blank' do
             %i.fi-download

@@ -1,0 +1,6 @@
+var id = <%= params[:id] %>;
+$('#episode_'+id).fadeOut('fast', function(){
+  this.remove();
+  var current_counter = parseInt($('#queue_counter').text());
+  $('#queue_counter').text(current_counter -1);
+});

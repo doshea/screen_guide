@@ -15,6 +15,10 @@ class EpisodesController < ApplicationController
         @current_user.episodes.delete(@episode)
       end
     end
-    render nothing: true
+    if params[:return]
+      render :queue_watch
+    else
+      render nothing: true
+    end
   end
 end

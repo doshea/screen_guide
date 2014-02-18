@@ -15,4 +15,4 @@
 // require chart.min
 // require dataTables/jquery.dataTables
 //
-//= require screen_guide_4
+//= require screen_guide

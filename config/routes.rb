@@ -1,4 +1,4 @@
-ScreenGuide4::Application.routes.draw do
+ScreenGuide::Application.routes.draw do
   root to: 'pages#index'
 
   get '/login' => 'sessions#new'

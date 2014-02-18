@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-ScreenGuide4::Application.load_tasks
+ScreenGuide::Application.load_tasks

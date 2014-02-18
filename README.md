@@ -1,4 +1,4 @@
-# ScreenGuide4
+# ScreenGuide
 
 Setting up Rails apps can get tedious -- repeating the same steps and downloading the same packages. This pre-packaged repository aims to reduce setup time and aid in getting off the ground quickly.
 
@@ -10,23 +10,23 @@ Setting up Rails apps can get tedious -- repeating the same steps and downloadin
   * Foundation 5-ready
 
 ### Setup
-1. Clone the repo down: <tt>git clone https://github.com/doshea/screen_guide_4.git</tt>
-2. Rename the cloned directory: <tt>mv screen_guide_4 your_app_name</tt>
+1. Clone the repo down: <tt>git clone https://github.com/doshea/screen_guide.git</tt>
+2. Rename the cloned directory: <tt>mv screen_guide your_app_name</tt>
 3. Delete the .git folder inside the repo: <tt>rm -rf .git</tt>
 4. Use Replace All (Command + Shift + F in Sublime) within your project to replace the following case-sensitive placeholders with the appropriate names for your application:
 
   | Placeholder         |          |           Replacement         |
   | :------------: |:-----:|:--------------------:|
-  | screen_guide_4         |   --> |        your_app_name       |
-  | ScreenGuide4          |   --> |         YourAppName        |
+  | screen_guide         |   --> |        your_app_name       |
+  | ScreenGuide          |   --> |         YourAppName        |
   | your_name_here |   --> | your_postgres_username |
 
-5. Rename screen_guide_4.js and .css.scss to your_app_name.js and .css.scss
+5. Rename screen_guide.js and .css.scss to your_app_name.js and .css.scss
 6. Create and migrate the database: <tt>rake db:create db:migrate</tt>
 7. Party down!
 
 ### Frameworks/Libraries
-ScreenGuide4 comes bundled with a number of libraries/frameworks to minimize the time you spend downloading and setting up.
+ScreenGuide comes bundled with a number of libraries/frameworks to minimize the time you spend downloading and setting up.
 
 #### HTML/CSS/JS Framework
   * [Foundation 5](http://foundation.zurb.com/docs/)

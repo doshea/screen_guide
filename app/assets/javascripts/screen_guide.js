@@ -15,5 +15,3 @@ function ready_stuff(){
     targets.click();
   })
 }
-
-//test push

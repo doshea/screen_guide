@@ -18,7 +18,11 @@
         %td= link_to episode.title, episode
         %td.center= link_to episode.season.number, episode.season
         %td.center= link_to episode.number, episode
-        %td #{checkboxes ? '' : 'In '}#{distance_of_time_in_words_to_now(episode.air_date)}#{checkboxes ? ' ago' : ''}
+        %td
+          - if Date.today = episode.air_date
+            Today
+          -else
+            #{checkboxes ? '' : 'In '}#{distance_of_time_in_words_to_now(episode.air_date)}#{checkboxes ? ' ago' : ''}
         -if checkboxes
           %td
             = form_tag watch_episode_path(episode), remote: true do

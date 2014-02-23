@@ -1,3 +1,4 @@
+= binding.pry
 %table
   %thead
     %tr
@@ -22,7 +23,7 @@
           - if Date.today == episode.air_date
             Today
           -else
-            #{checkboxes ? '' : 'In '}#{distance_of_time_in_words_to_now(episode.air_date)}#{checkboxes ? ' ago' : ''}
+            #{checkboxes ? '' : 'In '}#{distance_of_time_in_words_to_now(episode.air_date.to_time + 20*60*60)}#{checkboxes ? ' ago' : ''}
         -if checkboxes
           %td
             = form_tag watch_episode_path(episode), remote: true do

@@ -37,6 +37,9 @@ ScreenGuide::Application.routes.draw do
       collection do
         post :rage_create
       end
+      member do
+        post :check_for_new_episodes
+      end
     end
     resources :seasons, except: [:show, :index] do
       resources :episodes, only: [:new, :create]

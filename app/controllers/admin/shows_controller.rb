@@ -23,6 +23,7 @@ class Admin::ShowsController < ApplicationController
   def check_for_new_episodes
     show = Show.find(params[:id])
     show.check_for_new_episodes
+    redirect_to show
   end
 
   def edit

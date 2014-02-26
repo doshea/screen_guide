@@ -29,5 +29,5 @@
             = link_to edit_admin_episode_path(episode) do
               %i.fi-pencil
           %td
-            = link_to admin_episode_path(episode), method: :delete, data: {confirm: "Are you sure you want to delete #{episode.title}?"} do
+            = link_to admin_episode_path(episode), method: :delete, remote: true, data: {confirm: "Are you sure you want to delete #{episode.title}?"} do
               %i.fi-trash

@@ -30,8 +30,8 @@ class Admin::EpisodesController < ApplicationController
   end
 
   def destroy
-    episode = Episode.find(params[:id])
-    episode.delete
+    @episode = Episode.find(params[:id])
+    @episode.delete
   end
 
   private ###

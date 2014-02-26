@@ -103,10 +103,12 @@ class Show < ActiveRecord::Base
     end
 
     # Reports on what has been done
+    puts "===== #{self.name.upcase} ====="
     puts seasons_added ? "Added #{seasons_added} #{'seasons'.pluralize(seasons_added)}." : 'Seasons were up-to-date.'
     puts episodes_added ? "Added #{episodes_added} #{'episode'.pluralize(episodes_added)}." : 'Episodes were not created.'
     puts episodes_updated ? "Updated #{episodes_updated} #{'episode'.pluralize(episodes_updated)}." : 'Episodes not updated.'
     puts episodes_unchanged ? "#{episodes_unchanged} #{'Episode'.pluralize(episodes_unchanged)} unchanged." : "All episodes changed for '{self.title}'!!!"
+    puts ''
 
   end
 

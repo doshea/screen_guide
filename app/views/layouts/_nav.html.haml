@@ -2,7 +2,7 @@
   %ul.title-area
     %li.name
       %h1
-        = link_to 'Home', root_path
+        = link_to 'ScreenGuide', root_path
   %section.top-bar-section
     -# Left Nav Section
     %ul.left
@@ -10,18 +10,30 @@
     -# Right Nav Section
     %ul.right
       %li.divider
-      %li= link_to 'All Shows', shows_path
+      %li
+        = link_to shows_path do
+          %i.fi-monitor
+          All Shows
       %li.divider
       - if @current_user
-        %li= link_to 'Queue', account_queue_path
+        %li
+          = link_to account_queue_path do
+            %i.fi-list-thumbnails
+            Queue
         %li.divider        
         %li= link_to 'My Shows', account_shows_path
         %li.divider
         %li= link_to @current_user.username, account_path
         %li.divider
-        %li= link_to('Log out', login_path, method: :delete)
+        %li
+          = link_to login_path, method: :delete do
+            %i.fi-power{style: 'color: #f55;'}
+            Log out
       - else
-        %li= link_to('Log in', login_path)
+        %li
+          = link_to login_path do
+            %i.fi-power{style: 'color: #5f5;'}
+            Log in
         %li.divider
         %li= link_to('Register', new_user_path)
       %li.divider

@@ -22,7 +22,7 @@
             Queue
         %li.divider
         %li.has-dropdown
-          = link_to account_path do
+          = link_to '#' do
             = @current_user.username
           %ul.dropdown
             %li
@@ -37,9 +37,12 @@
 
       - else
         %li
+          = link_to new_user_path do
+            %i.fi-pencil
+            Register
+        %li.divider
+        %li
           = link_to login_path do
             %i.fi-power{style: 'color: #5f5;'}
             Log in
-        %li.divider
-        %li= link_to('Register', new_user_path)
       %li.divider

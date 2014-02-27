@@ -26,8 +26,6 @@ ScreenGuide::Application.routes.draw do
     patch :update
     patch :change_password
     get :queue
-
-    get :shows
   end
 
   namespace :admin do

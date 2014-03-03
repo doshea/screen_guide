@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :shows
   has_and_belongs_to_many :episodes
+
+  mount_uploader :image, AccountPicUploader
   
   before_create { generate_token(:auth_token) }
 

@@ -4,3 +4,7 @@
   Welcome to ScreenGuide, a truly inspiring site where users can register, log in, and
   %em even
   log out!
+%section
+  - @shows.each do |show|
+    = image_tag show.image
+  

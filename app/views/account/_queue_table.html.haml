@@ -14,7 +14,7 @@
       = content_tag_for(:tr, episode) do
         %td
           = link_to episode.show do
-            = image_tag episode.show.image, class: 'small-image'
+            = image_tag episode.show.image.medium_unaltered, class: 'small-image'
         %td= link_to episode.title, episode
         %td.center= link_to episode.season.number, episode.season
         %td.center= link_to episode.number, episode

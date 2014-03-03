@@ -25,20 +25,24 @@ class ShowPicUploader < CarrierWave::Uploader::Base
   end
 
   #TODO Change these to more relevant sizes
-  version :thumb do
+  version :large_unaltered do
+    process :resize_to_fit => [225, 225]
+  end
+
+  version :medium_altered, from_version: :large_unaltered do
+    process :resize_to_fill => [100, 100]
+  end
+
+  version :medium_unaltered, from_version: :large_unaltered do
+    process :resize_to_fit => [75, 75]
+  end
+
+  version :small_altered, from_version: :medium_altered do
+    process :resize_to_fill => [50, 50]
+  end
+
+  version :thumb, from_version: :small_altered do
     process :resize_to_fill => [27, 27]
-  end
-  version :reply_size do
-    process :resize_to_fill => [55, 55]
-  end
-  version :comment_size do
-    process :resize_to_fill => [80, 80]
-  end
-  version :creator_pic do
-    process :resize_to_fill => [95, 95]
-  end
-  version :search do
-    process :resize_to_fill => [120, 120]
   end
 
 end

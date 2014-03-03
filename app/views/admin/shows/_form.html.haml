@@ -1,9 +1,13 @@
-= form_for @show, url: url_for(controller: 'admin/shows', action: (editing ? :update : :create)) do |f|
+= form_for @show, url: url_for(controller: 'admin/shows', action: (editing ? :update : :create)), html: {multipart: true} do |f|
   = f.label :name
   = f.text_field :name
   = f.label :image
-  = f.text_field :image
-  = f.label :rage_id
+  %p Upload an image from your computer:
+  = f.file_field :image
+  %p OR
+  %p paste an image URL:
+  = f.url_field :remote_image_url
+  = f.label :rage_id, 'Rage ID'
   = f.number_field :rage_id
   = f.label :active
   = f.check_box :active

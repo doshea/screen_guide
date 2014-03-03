@@ -3,7 +3,7 @@
   -if is_admin?
     = link_to edit_admin_show_path(@show) do
       %i.fi-pencil
-= image_tag @show.image, class: 'large-image'
+= image_tag @show.image
 - if is_admin?
   %p
     = link_to 'Add Season', new_admin_show_season_path(@show), class: 'button small'

@@ -16,7 +16,9 @@
   %tbody
     - shows.each do |show|
       %tr
-        %td= image_tag show.image, class: 'small-image'
+        %td
+          = link_to show do
+            = image_tag show.image.medium_unaltered
         %td= link_to show.name, show
         %td.center= link_to show.seasons.count, show_seasons_path(show)
         %td.center= show.episodes.count

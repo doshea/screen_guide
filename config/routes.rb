@@ -26,8 +26,6 @@ ScreenGuide::Application.routes.draw do
     patch :update
     patch :change_password
     get :queue
-
-    get :shows
   end
 
   namespace :admin do
@@ -36,6 +34,9 @@ ScreenGuide::Application.routes.draw do
       resources :seasons, only: [:new, :create]
       collection do
         post :rage_create
+      end
+      member do
+        post :check_for_new_episodes
       end
     end
     resources :seasons, except: [:show, :index] do

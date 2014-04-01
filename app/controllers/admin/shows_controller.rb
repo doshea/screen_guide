@@ -23,6 +23,7 @@ class Admin::ShowsController < ApplicationController
   def check_for_new_episodes
     show = Show.find(params[:id])
     show.check_for_new_episodes
+    redirect_to show
   end
 
   def edit
@@ -45,7 +46,7 @@ class Admin::ShowsController < ApplicationController
 
   private ###
   def admin_show_params
-    params.require(:show).permit(:name, :active, :image, :rage_id)
+    params.require(:show).permit(:name, :active, :image, :rage_id, :remote_image_url)
   end
   def rage_show_params
     params.require(:show).permit(:name, :rage_id)

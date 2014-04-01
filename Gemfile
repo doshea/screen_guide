@@ -15,6 +15,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
+# AWS image upload gems
+gem 'carrierwave'
+gem 'fog'
+gem 'rmagick'
+gem 'remotipart'
+gem 'unf'
+
 # Datatables is disables by default. To enable, uncomment this gem and its related js and css lines in application.js and .css
 # gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 

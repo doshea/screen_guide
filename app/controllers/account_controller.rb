@@ -16,10 +16,6 @@ class AccountController < ApplicationController
     redirect_to account_path
   end
 
-  def shows
-    @shows = @current_user.shows
-  end
-
   def queue
     @queued = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date <= ?", Time.now - 8*60*60).by_air_date
     @upcoming = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date > ?", Time.now - 8*60*60).by_air_date

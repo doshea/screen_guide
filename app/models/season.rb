@@ -14,6 +14,6 @@ class Season < ActiveRecord::Base
 
   scope :by_number, -> { order(number: :asc) }
 
-  has_many :episodes, dependent: :destroy
+  has_many :episodes, dependent: :destroy, -> { order(:number) }
 
 end

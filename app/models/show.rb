@@ -12,7 +12,7 @@
 #
 
 class Show < ActiveRecord::Base
-  has_many :seasons, dependent: :destroy, -> { order(:number) }
+  has_many :seasons, -> { order(:number) }, dependent: :destroy
   has_many :episodes, through: :seasons
 
   has_and_belongs_to_many :users

@@ -17,8 +17,24 @@ class AccountController < ApplicationController
   end
 
   def queue
-    @queued = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date <= ?", Time.now - 8*60*60).by_air_date
-    @upcoming = Episode.joins(:show).where(shows: {id: @current_user.shows.map{|s| s.id}}).where.not(id: @current_user.episodes.map{|e| e.id}).where("air_date > ?", Time.now - 8*60*60).by_air_date
+    hr_adjustment = Rails.env.production? ? 7 : 0
+    @west_coast_time = Time.now - hr_adjustment.hours
+    @west_coast_date = Date.parse(@west_coast_time.to_s)
+
+    current_episode_ids = @current_user.episodes.map(&:id)
+    @unwatched_followed = Episode.joins(:show).where(shows: {id: @current_user.shows.map(&:id)}).where.not(id: current_episode_ids).by_air_date
+
+    @queued, @today, @upcoming = [], [], []
+
+    while (@unwatched_followed.any? && (@unwatched_followed.first.air_date < @west_coast_date))
+      @queued << @unwatched_followed.shift
+    end
+    while (@unwatched_followed.any? && (@unwatched_followed.first.air_date == @west_coast_date))
+      @today << @unwatched_followed.shift
+    end
+    while (@unwatched_followed.any? && (@unwatched_followed.first.air_date > @west_coast_date))
+      @upcoming << @unwatched_followed.shift
+    end
   end
 
   private ###

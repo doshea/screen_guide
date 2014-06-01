@@ -19,7 +19,13 @@
         %td.center= link_to episode.season.number, episode.season
         %td.center= link_to episode.number, episode
         %td
-          #{checkboxes ? '' : 'In '}#{distance_of_time_in_words_to_now(episode.air_date.to_time + 20*60*60 + 8*60*60)}#{checkboxes ? ' ago' : ''}
+          - west_coast_episode_time = episode.air_date.to_time + 20.hours + 8.hours
+
+          - time_to_now = distance_of_time_in_words_to_now(west_coast_episode_time)
+          - if west_coast_episode_time > @west_coast_time
+            In #{time_to_now}
+          - else
+            #{time_to_now} Ago
         -if checkboxes
           %td
             = form_tag watch_episode_path(episode), remote: true do

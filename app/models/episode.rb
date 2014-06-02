@@ -21,6 +21,8 @@ class Episode < ActiveRecord::Base
   scope :by_number, -> { order(number: :asc) }
   scope :by_air_date, -> { order(air_date: :asc, number: :asc) }
 
+  validates_presence_of :air_date, :number, :title, :season_id
+
   def torrent_link
     "http://www.google.com/#q=#{self.show.name}+torrent+s#{'%02d' % self.season.number}e#{'%02d' % self.number}"
   end

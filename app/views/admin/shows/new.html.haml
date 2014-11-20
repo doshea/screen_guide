@@ -1,7 +1,12 @@
-%h1 New Show
-= render partial: 'form', locals: {editing: false}
-%h3
-= form_tag rage_create_admin_shows_path do
-  = label_tag :rage_id
-  = number_field_tag :rage_id
-  = submit_tag
+.small-5.columns.small-offset-1
+  %h1 New Show
+  = render partial: 'form', locals: {editing: false}
+.small-1.columns
+  %span.small.button.round.secondary
+    Or
+.small-5.columns
+  %h1 New Show by Rage ID
+  = form_tag rage_create_admin_shows_path do
+    = label_tag :rage_id
+    = number_field_tag :rage_id
+    = submit_tag 'Create Show', class: 'button'

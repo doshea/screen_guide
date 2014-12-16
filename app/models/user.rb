@@ -18,8 +18,9 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_and_belongs_to_many :shows
+  has_and_belongs_to_many :followed_shows, class_name: 'Show', join_table: 'shows_users', association_foreign_key: 'show_id'
   has_and_belongs_to_many :episodes
+  has_many :watch_records
 
   mount_uploader :image, AccountPicUploader
   
@@ -68,7 +69,14 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column]) #may need a colon
   end
 
-  def has_watched?(season)
-    (season.episodes - self.episodes).empty?
+  def has_watched?(watchable)
+    watchable.watched_by?(self)
+  end
+
+  def watch!(watchable)
+
+  end
+  def unwatch(watchable)
+
   end
 end

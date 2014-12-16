@@ -2,3 +2,48 @@
 .center {
   text-align: center;
 }
+
+// Queue
+ol.episodes {
+  list-style-type: none;
+}
+li.episode {
+  border: 1px solid black;
+  overflow: hidden;
+  position: relative;
+  height: 3em;
+  &>* {
+    float: left;
+  }
+  .pic-link {
+    height: 100%;
+    width: 4em;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .general {
+    padding-left: 1em;
+    width: 20em;
+    overflow: hidden;
+    text-align: right;
+  }
+  .name {
+    max-width: 18em;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .numbers {
+    font-size: smaller;
+    text-align: right;
+  }
+  .spacer {
+    height: 100%;
+    border-right: 1px solid #ccc; 
+    width: 0.5em;
+    background: white;
+    display: inline-block;
+  }
+  .box {
+    width: 3em;
+  }
+}

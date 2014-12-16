@@ -15,7 +15,9 @@ class Show < ActiveRecord::Base
   has_many :seasons, -> { order(:number) }, dependent: :destroy
   has_many :episodes, through: :seasons
 
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :followers, class_name: 'User', join_table: 'shows_users', association_foreign_key: 'user_id'
+  has_many :watch_records, as: :watchable
+  has_many :finishers, through: :watch_records, source: :user
 
   mount_uploader :image, ShowPicUploader
 
@@ -146,6 +148,15 @@ class Show < ActiveRecord::Base
     end
     new_show
   end
+
+  def watched_by?(user)
+    if finishers.include?(user)
+      self
+    else
+      false
+    end
+  end
+
 
   private
   def self.symbolize_and_downcase_keys_deep!(h)

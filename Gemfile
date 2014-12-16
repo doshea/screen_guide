@@ -18,7 +18,7 @@ gem 'jquery-rails'
 # AWS image upload gems
 gem 'carrierwave'
 gem 'fog'
-gem 'rmagick'
+gem 'rmagick', require: false
 gem 'remotipart'
 gem 'unf'
 

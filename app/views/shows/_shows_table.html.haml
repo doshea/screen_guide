@@ -31,7 +31,7 @@
         - if is_logged_in?
           %td.center
             = form_tag watch_show_path(show), remote: true do
-              = check_box_tag :watched, 1, @current_user.shows.include?(show), id: nil
+              = check_box_tag :watched, 1, @current_user.followed_shows.include?(show), id: nil
         - if is_admin?
           %td
             = link_to edit_admin_show_path(show) do

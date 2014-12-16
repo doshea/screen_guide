@@ -22,12 +22,12 @@ class AccountController < ApplicationController
     @west_coast_date = Date.parse(@west_coast_time.to_s)
 
     current_episode_ids = @current_user.episodes.map(&:id)
-    @unwatched_followed = Episode.joins(:show).where(shows: {id: @current_user.shows.map(&:id)}).where.not(id: current_episode_ids).by_air_date
+    @unwatched_followed = Episode.joins(:show).where(shows: {id: @current_user.followed_shows.map(&:id)}).where.not(id: current_episode_ids).by_air_date
 
     @queued, @today, @upcoming = [], [], []
 
     while (@unwatched_followed.any? && (@unwatched_followed.first.air_date < @west_coast_date))
-      @queued << @unwatched_followed.shift
+      @queued << @unwatched_followed.to_a.shift
     end
     while (@unwatched_followed.any? && (@unwatched_followed.first.air_date == @west_coast_date))
       @today << @unwatched_followed.shift

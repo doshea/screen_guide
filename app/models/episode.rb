@@ -17,6 +17,7 @@ class Episode < ActiveRecord::Base
   has_one :show, through: :season
 
   has_and_belongs_to_many :users
+  has_many :watch_records, as: :watchable
 
   scope :by_number, -> { order(number: :asc) }
   scope :by_air_date, -> { order(air_date: :asc, number: :asc) }
@@ -25,6 +26,16 @@ class Episode < ActiveRecord::Base
 
   def torrent_link
     "http://www.google.com/#q=#{self.show.name}+torrent+s#{'%02d' % self.season.number}e#{'%02d' % self.number}"
+  end
+
+  def watched_by?(user)
+    if season.watched_by?(user)
+      season.watched_by?(user)
+    elsif users.include?(user)
+      self
+    else
+      false
+    end
   end
 
 end

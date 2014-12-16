@@ -13,9 +13,9 @@ class ShowsController < ApplicationController
     if @current_user
       @show = Show.find(params[:id])
       if params[:watched].present?
-        @current_user.shows << @show unless @current_user.shows.include?(@show)
+        @current_user.followed_shows << @show unless @current_user.followed_shows.include?(@show)
       else
-        @current_user.shows.delete(@show)
+        @current_user.followed_shows.delete(@show)
       end
     end
     render nothing: true

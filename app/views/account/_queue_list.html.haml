@@ -1,3 +1,36 @@
+%ol.episodes
+  - episodes.each do |episode|
+    %li.episode
+      = link_to '', episode.show, class: 'pic-link', style: "background-image: url(#{episode.show.image.medium_unaltered});"
+        
+      
+      .general
+        .name= episode.title
+        .numbers
+          = link_to "S#{episode.season.number}",episode.season
+          = link_to "E#{episode.number}", episode\
+          of
+          = link_to "#{episode.show.name}", episode.show
+      .spacer
+      .box.aired
+        Aired:
+        %br
+        .airdate
+          %span.relative= air_tense(episode.air_date, true)
+          %span.exact= episode.air_date.strftime("%m/%d/%Y")
+      .spacer
+      -if checkboxes
+        .box
+          = form_tag watch_episode_path(episode), remote: true do
+            = check_box_tag :watched, 1, @current_user.episodes.include?(episode), id: nil
+            = hidden_field_tag :return, true
+        .spacer
+      .box
+        = link_to episode.torrent_link, target: '_blank' do
+          %i.fi-download
+        = link_to episode.kickass_link, target: '_blank' do
+          Kickass
+
 %table
   %thead
     %tr
@@ -35,26 +68,3 @@
           = link_to episode.torrent_link, target: '_blank' do
             %i.fi-download
 
-%ol.episodes
-  - episodes.each do |episode|
-    %li.episode
-      = link_to '', episode.show, class: 'pic-link', style: "background-image: url(#{episode.show.image.medium_unaltered});"
-        
-      
-      .general
-        .name= episode.title
-        .numbers
-          = link_to "S#{episode.season.number}",episode.season
-          = link_to "E#{episode.number}", episode\
-          of
-          = link_to "#{episode.show.name}", episode.show
-      .spacer
-      -if checkboxes
-        .box
-          = form_tag watch_episode_path(episode), remote: true do
-            = check_box_tag :watched, 1, @current_user.episodes.include?(episode), id: nil
-            = hidden_field_tag :return, true
-      .spacer
-      = link_to episode.torrent_link, target: '_blank' do
-        .box
-          %i.fi-download

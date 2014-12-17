@@ -25,7 +25,10 @@ class Episode < ActiveRecord::Base
   validates_presence_of :air_date, :number, :title, :season_id
 
   def torrent_link
-    "http://www.google.com/#q=#{self.show.name}+torrent+s#{'%02d' % self.season.number}e#{'%02d' % self.number}"
+    "http://www.google.com/#q=#{show.name}+torrent+#{shorthand}"
+  end
+  def kickass_link
+    "https://kickass.so/usearch/#{show.name} #{shorthand}"
   end
 
   def watched_by?(user)
@@ -36,6 +39,11 @@ class Episode < ActiveRecord::Base
     else
       false
     end
+  end
+
+  private
+  def shorthand
+    "s#{'%02d' % season.number}e#{'%02d' % number}"
   end
 
 end

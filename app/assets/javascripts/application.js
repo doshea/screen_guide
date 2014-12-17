@@ -16,3 +16,11 @@
 // require dataTables/jquery.dataTables
 //
 //= require screen_guide
+
+$(document).ready(function(){
+  $('.episode').on('click','.watch-mark',function(e){
+    var episode = $(this).closest('.episode');
+    episode.toggleClass('watched');
+    
+  });
+});

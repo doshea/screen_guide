@@ -2,9 +2,6 @@
   Queue (
   %span#queue_counter>= @queued.length
   )
--# = render partial: 'queue_table', locals: {episodes: @queued, checkboxes: true}
-= render partial: 'queue_list', locals: {episodes: @queued, checkboxes: true}
-%h3 Today
-= render partial: 'queue_table', locals: {episodes: @today, checkboxes: true}
+= render partial: 'queue_list', locals: {episodes: @queued, future: false}
 %h3 Upcoming
-= render partial: 'queue_table', locals: {episodes: @upcoming, checkboxes: false}
+= render partial: 'queue_list', locals: {episodes: @upcoming, future: true}

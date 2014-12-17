@@ -2,15 +2,23 @@
 .center {
   text-align: center;
 }
+@mixin transition-fast {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
 
 // Queue
 ol.episodes {
   list-style-type: none;
+  display: inline-block;
 }
 li.episode {
   margin: 0.2em 0;
   border: solid 1px #ddd;
-  overflow: hidden;
+  overflow: none;
+  width: 100%;
   position: relative;
   height: 3em;
   &>* {
@@ -21,17 +29,23 @@ li.episode {
     width: 4em;
     background-repeat: no-repeat;
     background-size: cover;
+    &:hover {
+      opacity: 0.8;
+    }
   }
   .general {
     padding-left: 1em;
+    padding-right: 0.5em;
     width: 20em;
     overflow: hidden;
     text-align: right;
+
   }
   .name {
-    max-width: 18em;
+    max-width: 19em;
     font-weight: 200;
     white-space: nowrap;
+    margin: 0;
   }
   .numbers {
     font-size: smaller;
@@ -40,13 +54,34 @@ li.episode {
   .spacer {
     height: 100%;
     border-right: 1px solid #ccc; 
-    width: 0.5em;
     background: white;
     display: inline-block;
   }
   .box {
     text-align: center;
     padding-left: 0.5em;
+    &.downloads {
+      padding: 0;
+      width: 2em;
+      text-align: center;
+      height: 100%;
+      overflow: hidden;
+      a {
+        display: inline-block;
+        color: inherit;
+        opacity: 0.6;
+        height: 50%;
+        width: 100%;
+        &:hover {
+          opacity: 0.8;
+          background-color: #ccc;
+        }
+      }
+      img {
+        vertical-align: top;
+        margin-top: 0.1em;
+      }
+    }
     &.aired {
       font-size: small;
       * {
@@ -54,6 +89,21 @@ li.episode {
         -moz-transition: all 0.3s;
         -o-transition: all 0.3s;
         transition: all 0.3s;
+      }
+    }
+  }
+
+  &.watched {
+    .watch-mark {
+      background-color: lighten(lightgreen, 15%);
+      .slider-watched {
+        right: 0;
+      }
+      .slider-unwatched {
+        left: 100%;
+      }
+      &:hover {
+        background-color: lightgreen;
       }
     }
   }
@@ -66,7 +116,6 @@ li.episode {
     opacity: 0;
     width: 100%;
     left: 0;
-    font-weight: bold;
   }
   .airdate {
     position: relative;
@@ -78,5 +127,50 @@ li.episode {
     .exact {
       opacity: 1;
     }
+  }
+
+}
+
+.watch-mark {
+  // @include transition-fast;
+  position: absolute;
+  overflow: hidden;
+  left: 100%;
+  top: -1px;
+  -webkit-border-bottom-right-radius: 0.5em;
+  -moz-border-radius-bottomright: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  border: 1px solid #ccc;
+  border-left: none;
+  width: 3em;
+  height: 2.5em;
+  background-color: lighten(yellow, 35%);
+  color: #666;
+  &:hover {
+    background: yellow;
+    color: black;
+  }
+  i {
+    font-size: 1.5em;
+    padding: 0.25em 0 0;
+  }
+  .slider {
+    -webkit-transition: left 0.3s, right 0.3s;
+    -moz-transition: left 0.3s, right 0.3s;
+    -o-transition: left 0.3s, right 0.3s;
+    transition: left 0.3s, right 0.3s;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    &.slider-watched {
+      right: 100%;
+    }
+    &.slider-unwatched {
+      left: 0;
+    }
+  }
+  a {
+    color: inherit;
   }
 }

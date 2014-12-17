@@ -1,0 +1,42 @@
+%li.episode{class: "#{'watched' if @current_user.has_watched?(episode)}"}
+  = link_to '', episode.show, class: 'pic-link', style: "background-image: url(#{episode.show.image.medium_unaltered});"
+  .general
+    .name= episode.title
+    .numbers
+      = link_to "S#{'%02d' % episode.season.number}",episode.season
+      ,
+      = link_to "E#{'%02d' % episode.number}", episode\
+      of
+      = link_to "#{episode.show.name}", episode.show
+  .spacer
+  .box.aired
+    - tense = datetime_ago_or_before(episode.air_date)[:tense]
+    - if tense > 0
+      Airs in:
+    - elsif tense == 0
+      Airs:
+    - else
+      Aired:
+    %br
+    .airdate
+      %span.relative= air_tense(episode.air_date, true)
+      %span.exact= episode.air_date.strftime("%m/%d/%Y")
+  .spacer
+  .box.downloads
+    = link_to episode.torrent_link, target: '_blank' do
+      %i.fi-download
+    %br
+    = link_to episode.kickass_link, target: '_blank' do
+      = image_tag 'kickass_250_bw.svg', width: 16
+  - unless future
+    .spacer
+    .box.watch-mark
+      = link_to watch_episode_path(episode, watched: true), remote: true, method: :post do
+        .slider.slider-unwatched
+          %i.fi-eye
+      = link_to watch_episode_path(episode, watched: false), remote: true, method: :post do
+        .slider.slider-watched
+          %i.fi-check
+      = form_tag watch_episode_path(episode), remote: true, class: 'hide' do
+        = check_box_tag :watched, 1, @current_user.has_watched?(episode), id: nil
+        = hidden_field_tag :return, true

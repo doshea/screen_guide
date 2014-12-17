@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :authenticate
-  helper_method :air_tense
+  helper_method :air_tense, :datetime_ago_or_before
 
   def air_tense(some_time, omit_air = false)
     ago_or_before_hsh = datetime_ago_or_before(some_time)
@@ -17,19 +17,6 @@ class ApplicationController < ActionController::Base
     when -1
       "#{'Aired ' unless omit_air}#{phrase} ago"
     end
-  end
-
-  private
-  def authenticate
-    @current_user = User.find_by_auth_token( cookies[:auth_token]) if cookies[:auth_token]
-    @current_user ||= session[:user_id].present? ? User.find(session[:user_id]) : nil
-  end
-
-  def ensure_logged_in
-    render text: 'Account Required' unless @current_user
-  end
-  def ensure_admin
-    render text: 'Not Authorized' if (@current_user.nil? || !@current_user.is_admin)
   end
 
   def datetime_ago_or_before(some_time)
@@ -74,5 +61,20 @@ class ApplicationController < ActionController::Base
     end
     return {phrase: phrase, tense: tense}
   end
+
+  private
+  def authenticate
+    @current_user = User.find_by_auth_token( cookies[:auth_token]) if cookies[:auth_token]
+    @current_user ||= session[:user_id].present? ? User.find(session[:user_id]) : nil
+  end
+
+  def ensure_logged_in
+    render text: 'Account Required' unless @current_user
+  end
+  def ensure_admin
+    render text: 'Not Authorized' if (@current_user.nil? || !@current_user.is_admin)
+  end
+
+
   
 end

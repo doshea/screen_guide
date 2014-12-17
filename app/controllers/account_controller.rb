@@ -30,10 +30,10 @@ class AccountController < ApplicationController
       @queued << @unwatched_followed.to_a.shift
     end
     while (@unwatched_followed.any? && (@unwatched_followed.first.air_date == @west_coast_date))
-      @today << @unwatched_followed.shift
+      @today << @unwatched_followed.to_a.shift
     end
     while (@unwatched_followed.any? && (@unwatched_followed.first.air_date > @west_coast_date))
-      @upcoming << @unwatched_followed.shift
+      @upcoming << @unwatched_followed.to_a.shift
     end
   end
 

@@ -14,6 +14,7 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'foundation-icons-sass-rails'
 
 # AWS image upload gems
 gem 'carrierwave'

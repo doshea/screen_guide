@@ -10,14 +10,14 @@
       = link_to "#{episode.show.name}", episode.show
   .spacer
   .box.aired
-    - tense = datetime_ago_or_before(episode.air_date)[:tense]
-    - if tense > 0
-      Airs in:
-    - elsif tense == 0
-      Airs:
-    - else
-      Aired:
-    %br
+    .air
+      - tense = datetime_ago_or_before(episode.air_date)[:tense]
+      - if tense > 0
+        Airs in:
+      - elsif tense == 0
+        Airs:
+      - else
+        Aired:
     .airdate
       %span.relative= air_tense(episode.air_date, true)
       %span.exact= episode.air_date.strftime("%m/%d/%Y")

@@ -29,7 +29,8 @@ class ApplicationController < ActionController::Base
       month_diff = (now.month - some_time.month).abs
       if year_diff == 1
         if month_diff > 0
-          phrase = "1 year, #{ActionController::Base.helpers.pluralize(month_diff,'month')}"
+          year_decim = ((year_diff + month_diff/12.0)*10).ceil/10.0
+          phrase = "#{year_decim} years"
         else
           phrase = '1 year'
         end
@@ -40,7 +41,8 @@ class ApplicationController < ActionController::Base
           day_diff = (now.day - some_time.day).abs
           if month_diff == 1
             if day_diff > 0
-              phrase = "1 month, #{ActionController::Base.helpers.pluralize(day_diff,'day')}"
+              month_decim = ((month_diff + day_diff/30.0)*10).ceil/10.0
+              phrase = "#{month_decim} months"
             else
               phrase = '1 month'
             end

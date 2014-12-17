@@ -60,6 +60,11 @@ li.episode {
   .box {
     text-align: center;
     padding-left: 0.5em;
+    height: 100%;
+    &.watch-mark {
+      height: 2.5em;
+      width: 2em;
+    }
     &.downloads {
       padding: 0;
       width: 2em;
@@ -130,7 +135,6 @@ li.episode {
   }
 
 }
-
 .watch-mark {
   // @include transition-fast;
   position: absolute;
@@ -143,7 +147,6 @@ li.episode {
   border: 1px solid #ccc;
   border-left: none;
   width: 3em;
-  height: 2.5em;
   background-color: lighten(yellow, 35%);
   color: #666;
   &:hover {

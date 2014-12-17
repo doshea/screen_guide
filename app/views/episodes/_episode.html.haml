@@ -13,11 +13,11 @@
     .air
       - tense = datetime_ago_or_before(episode.air_date)[:tense]
       - if tense > 0
-        Airs in:
+        Airs in
       - elsif tense == 0
-        Airs:
+        Airs
       - else
-        Aired:
+        Aired
     .airdate
       %span.relative= air_tense(episode.air_date, true)
       %span.exact= episode.air_date.strftime("%m/%d/%Y")
@@ -31,12 +31,6 @@
   - unless future
     .spacer
     .box.watch-mark
-      = link_to watch_episode_path(episode, watched: true), remote: true, method: :post do
-        .slider.slider-unwatched
-          %i.fi-eye
-      = link_to watch_episode_path(episode, watched: false), remote: true, method: :post do
-        .slider.slider-watched
-          %i.fi-check
-      = form_tag watch_episode_path(episode), remote: true, class: 'hide' do
-        = check_box_tag :watched, 1, @current_user.has_watched?(episode), id: nil
-        = hidden_field_tag :return, true
+      %i.fi-check
+      = link_to '', watch_episode_path(episode, watched: true), remote: true, method: :post, class: 'unwatched'
+      = link_to '',watch_episode_path(episode, watched: false), remote: true, method: :post, class: 'watched'

@@ -64,6 +64,7 @@ li.episode {
     &.watch-mark {
       height: 2.5em;
       width: 2em;
+      padding: 0;
     }
     &.downloads {
       padding: 0;
@@ -72,6 +73,7 @@ li.episode {
       height: 100%;
       overflow: hidden;
       a {
+        outline: 0;
         display: inline-block;
         color: inherit;
         opacity: 0.6;
@@ -101,10 +103,13 @@ li.episode {
   &.watched {
     .watch-mark {
       background-color: lighten(lightgreen, 15%);
-      .slider-watched {
+      i:before {
+        opacity: 1;
+      }
+      a.watched {
         right: 0;
       }
-      .slider-unwatched {
+      a.unwatched {
         left: 100%;
       }
       &:hover {
@@ -133,7 +138,9 @@ li.episode {
       opacity: 1;
     }
   }
-
+  .air {
+    text-decoration: underline;
+  }
 }
 .watch-mark {
   // @include transition-fast;
@@ -163,25 +170,28 @@ li.episode {
     margin-top: 0.25em;
     &:before{
       position: absolute;
+      left: 22%;
+      top: 15%;
+      opacity: 0;
     }
   }
-  .slider {
+  a {
+    outline: 0;
     -webkit-transition: left 0.3s, right 0.3s;
     -moz-transition: left 0.3s, right 0.3s;
     -o-transition: left 0.3s, right 0.3s;
     transition: left 0.3s, right 0.3s;
+    color: inherit;
     position: absolute;
-    top: 0;
+    z-index: 10;
     width: 100%;
     height: 100%;
-    &.slider-watched {
+    top: 0;
+    &.watched {
       right: 100%;
     }
-    &.slider-unwatched {
+    &.unwatched {
       left: 0;
     }
-  }
-  a {
-    color: inherit;
   }
 }

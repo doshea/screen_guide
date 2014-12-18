@@ -21,12 +21,19 @@ class ApplicationController < ActionController::Base
 
   def datetime_ago_or_before(some_time)
     now = DateTime.now
-    year_diff = (now.year - some_time.year).abs
+    
+    time_diff = (some_time - now).to_i.abs
+    year_diff = (time_diff/365).floor
+    time_diff = time_diff - (year_diff * 365)
+    month_diff = (time_diff/30).floor
+    time_diff = time_diff - (month_diff * 30)
+    day_diff = time_diff
+
     tense = 0
     if year_diff > 1
       phrase = "#{year_diff} years"
     else
-      month_diff = (now.month - some_time.month).abs
+      # month_diff = (now.month - some_time.month).abs
       if year_diff == 1
         if month_diff > 0
           year_decim = ((year_diff + month_diff/12.0)*10).ceil/10.0
@@ -38,7 +45,7 @@ class ApplicationController < ActionController::Base
         if month_diff > 1
           phrase = "#{month_diff} months"
         else
-          day_diff = (now.day - some_time.day).abs
+          # day_diff = (now.day - some_time.day).abs
           if month_diff == 1
             if day_diff > 0
               month_decim = ((month_diff + day_diff/30.0)*10).ceil/10.0
@@ -47,7 +54,7 @@ class ApplicationController < ActionController::Base
               phrase = '1 month'
             end
           else
-            day_diff = (now.day - some_time.day).abs
+            # day_diff = (now.day - some_time.day).abs
             if day_diff > 0
               phrase = ActionController::Base.helpers.pluralize(day_diff, 'day')
             else

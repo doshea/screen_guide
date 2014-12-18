@@ -17,10 +17,12 @@
 //
 //= require screen_guide
 
-$(document).ready(function(){
+document.addEventListener('page:change', ready_stuff);
+
+function ready_stuff(){
   $('.episode').on('click','.watch-mark',function(e){
     var episode = $(this).closest('.episode');
     episode.toggleClass('watched');
     
   });
-});
+};

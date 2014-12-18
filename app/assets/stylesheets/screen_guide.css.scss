@@ -8,6 +8,12 @@
   -o-transition: all 0.3s;
   transition: all 0.3s;
 }
+@mixin transition($interior){
+  -webkit-transition: $interior;
+  -moz-transition: $interior;
+  -o-transition: $interior;
+  transition: $interior;
+}
 
 // Queue
 ol.episodes {
@@ -168,7 +174,11 @@ li.episode {
     border: 1px solid black;
     display: inline-block;
     margin-top: 0.25em;
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    border-radius: 0.2em;
     &:before{
+      @include transition(opacity 0.3s);
       position: absolute;
       left: 22%;
       top: 15%;
@@ -177,10 +187,6 @@ li.episode {
   }
   a {
     outline: 0;
-    -webkit-transition: left 0.3s, right 0.3s;
-    -moz-transition: left 0.3s, right 0.3s;
-    -o-transition: left 0.3s, right 0.3s;
-    transition: left 0.3s, right 0.3s;
     color: inherit;
     position: absolute;
     z-index: 10;

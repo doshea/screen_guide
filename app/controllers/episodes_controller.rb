@@ -9,7 +9,7 @@ class EpisodesController < ApplicationController
   def watch
     if @current_user
       @episode = Episode.find(params[:id])
-      if params[:watched].present?
+      if params[:watched] == 'true'
         @current_user.episodes << @episode unless @current_user.episodes.include?(@episode)
       else
         @current_user.episodes.delete(@episode)

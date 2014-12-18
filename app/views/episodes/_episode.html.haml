@@ -23,12 +23,18 @@
       %span.relative= air_tense(episode.air_date, true)
       %span.exact= episode.air_date.strftime("%m/%d/%Y")
   .spacer
-  .box.downloads
+  .box.torrent
     = link_to episode.torrent_link, target: '_blank' do
       %i.fi-download
     %br
     = link_to episode.kickass_link, target: '_blank' do
       = image_tag 'kickass_250_bw.svg', width: 16
+  .spacer
+  .box.streaming
+    = link_to episode.hulu_link, target: '_blank', class: 'hulu' do
+      = image_tag 'hulu_h.png', width: 12
+    = link_to episode.netflix_link, target: '_blank', class: 'netflix' do
+      = image_tag 'netflix_n.png', width: 8
   - unless future
     .spacer
     .box.watch-mark

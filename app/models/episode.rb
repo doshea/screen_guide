@@ -30,6 +30,13 @@ class Episode < ActiveRecord::Base
   def kickass_link
     "https://kickass.so/usearch/#{show.name} #{shorthand}"
   end
+  def hulu_link
+    phrase = "#{show.name} season #{season.number} episode #{number}".gsub(' ','+')
+    "http://www.hulu.com/search?q=#{phrase}&type=episodes"
+  end
+  def netflix_link
+    "http://www.netflix.com/search/#{show.name}"
+  end
 
   def watched_by?(user)
     if season.watched_by?(user)

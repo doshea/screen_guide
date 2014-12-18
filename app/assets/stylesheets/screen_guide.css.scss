@@ -99,7 +99,7 @@ li.episode {
       width: 2.5em;
       padding: 0;
     }
-    &.downloads {
+    &.torrent, &.streaming {
       padding: 0;
       width: 2em;
       text-align: center;
@@ -114,6 +114,12 @@ li.episode {
         &:hover {
           opacity: 0.6;
           background-color: #aaa;
+          &.netflix {
+            background-color: #e50a15;
+          }
+          &.hulu {
+            background-color: #99cc33;
+          }
         }
       }
       img {

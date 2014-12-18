@@ -15,6 +15,8 @@
   transition: $interior;
 }
 
+$ep-outline: #aaa;
+
 // Queue
 ol.episodes {
   list-style-type: none;
@@ -22,11 +24,14 @@ ol.episodes {
 }
 li.episode {
   margin: 0.2em 0;
-  border: solid 1px #ddd;
-  overflow: none;
+  border: solid 1px $ep-outline;
+  background-color: #eee;
   width: 100%;
   position: relative;
   height: 3em;
+  &:hover {
+    background-color: #e8e8e8;
+  }
   &>* {
     float: left;
   }
@@ -42,24 +47,35 @@ li.episode {
   .general {
     padding-left: 1em;
     padding-right: 0.5em;
-    width: 20em;
+    width: 18em;
     overflow: hidden;
-    text-align: right;
-
+    text-align: middle;
+    position: relative;
+    height: 100%;
+    hr {
+      margin: 2px 0;
+    }
   }
   .name {
-    max-width: 19em;
     font-weight: 200;
+    font-size: small;
     white-space: nowrap;
     margin: 0;
+    text-align: center;
+
+    @include transition(right 2s);
+    &:hover {
+      right: 100%;
+    }
   }
   .numbers {
     font-size: smaller;
-    text-align: right;
+    text-align: center;
+    height: 1.5em;
   }
   .spacer {
     height: 100%;
-    border-right: 1px solid #ccc; 
+    border-right: 1px solid $ep-outline; 
     background: white;
     display: inline-block;
   }
@@ -69,7 +85,7 @@ li.episode {
     height: 100%;
     &.watch-mark {
       height: 2.5em;
-      width: 2em;
+      width: 2.5em;
       padding: 0;
     }
     &.downloads {
@@ -86,8 +102,8 @@ li.episode {
         height: 50%;
         width: 100%;
         &:hover {
-          opacity: 0.8;
-          background-color: #ccc;
+          opacity: 0.6;
+          background-color: #aaa;
         }
       }
       img {
@@ -109,8 +125,11 @@ li.episode {
   &.watched {
     .watch-mark {
       background-color: lighten(lightgreen, 15%);
-      i:before {
-        opacity: 1;
+      i {
+        border-color: #999;
+        &:before {
+          opacity: 1;
+        }
       }
       a.watched {
         right: 0;
@@ -152,26 +171,27 @@ li.episode {
   // @include transition-fast;
   position: absolute;
   overflow: hidden;
-  left: 100%;
+  left: 100.2%;
   top: -1px;
   -webkit-border-bottom-right-radius: 0.5em;
   -moz-border-radius-bottomright: 0.5em;
   border-bottom-right-radius: 0.5em;
-  border: 1px solid #ccc;
+  border: 1px solid $ep-outline;
   border-left: none;
-  width: 3em;
-  background-color: lighten(yellow, 35%);
+  background-color: lighten(lightgrey, 35%);
   color: #666;
   &:hover {
     background: yellow;
     color: black;
   }
   i {
+    position: relative;
+    left: -1px;
     font-size: 1.5em;
     padding: 0.15em;
     height: 1em;
     width: 1em;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     display: inline-block;
     margin-top: 0.25em;
     -webkit-border-radius: 0.2em;
@@ -180,8 +200,8 @@ li.episode {
     &:before{
       @include transition(opacity 0.3s);
       position: absolute;
-      left: 22%;
-      top: 15%;
+      left: 12.5%;;
+      top: 0;
       opacity: 0;
     }
   }

@@ -1,13 +1,14 @@
 %li.episode{class: "#{'watched' if @current_user.has_watched?(episode)}"}
   = link_to '', episode.show, class: 'pic-link', style: "background-image: url(#{episode.show.image.medium_unaltered});"
   .general
-    .name= episode.title
     .numbers
-      = link_to "S#{'%02d' % episode.season.number}",episode.season
+      = link_to "Season #{'%02d' % episode.season.number}",episode.season
       ,
-      = link_to "E#{'%02d' % episode.number}", episode\
+      = link_to "Episode #{'%02d' % episode.number}", episode\
       of
       = link_to "#{episode.show.name}", episode.show
+    %hr
+    .name= episode.title
   .spacer
   .box.aired
     .air

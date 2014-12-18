@@ -7,7 +7,6 @@
       %th Episodes
       %th Start Date
       %th End Date
-      %th Active
       - if is_logged_in?
         %th
       - if is_admin?
@@ -25,9 +24,6 @@
         - air_dates = show.episodes.map{|e| e.air_date}.sort
         %td= air_dates.first.strftime("%b %d, %Y") if air_dates.any?
         %td= air_dates.last.strftime("%b %d, %Y") if air_dates.any?
-        %td.center
-          - if show.active?
-            %i.fi-check
         - if is_logged_in?
           %td.center
             = form_tag watch_show_path(show), remote: true do

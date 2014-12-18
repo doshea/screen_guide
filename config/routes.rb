@@ -5,16 +5,14 @@ ScreenGuide::Application.routes.draw do
   post '/login' => 'sessions#create'
   delete '/login' => 'sessions#destroy'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:create]
   resources :shows, only: [:index, :show] do
     resources :seasons, only: [:index]
     member do
       post :watch
     end
   end
-  resources :seasons, only: [:show] do
-    resources :episodes, only: [:index]
-  end
+  resources :seasons, only: [:show]
   resources :episodes, only: [:show] do
     member do
       post :watch

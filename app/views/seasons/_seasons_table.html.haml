@@ -15,7 +15,7 @@
         %td= link_to season.show.name, season.show
         %td.center= link_to season.number, season
         - air_dates = season.episodes.map{|e| e.air_date}.sort
-        %td.center= link_to season.episodes.count, season_episodes_path(season)
+        %td.center= link_to season.episodes.count, season
         %td= air_dates.first.strftime("%b %d, %Y") if air_dates.any?
         %td= air_dates.last.strftime("%b %d, %Y") if air_dates.any?
         - if is_admin?

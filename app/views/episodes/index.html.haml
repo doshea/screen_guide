@@ -1,6 +1,0 @@
-%h1
-  Episodes of
-  = link_to "Season #{@season.number}", @season
-  of
-  %i= link_to @season.show.name, @season.show
-= render partial: 'episodes_table', locals: {season: @season, episodes: @episodes}

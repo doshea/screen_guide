@@ -27,8 +27,8 @@
     = link_to episode.torrent_link, target: '_blank' do
       %i.fi-download
     %br
-    = link_to episode.kickass_link, target: '_blank' do
-      = image_tag 'kickass_250_bw.svg', width: 16
+    = link_to episode.kickass_link, target: '_blank', class: 'kickass' do
+      = image_tag 'kickass_250_bw.png', width: 16
   .spacer
   .box.streaming
     = link_to episode.hulu_link, target: '_blank', class: 'hulu' do

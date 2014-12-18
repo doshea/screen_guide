@@ -114,6 +114,9 @@ li.episode {
         &:hover {
           opacity: 0.6;
           background-color: #aaa;
+          &.kickass {
+            background-color: #c0af67;
+          }
           &.netflix {
             background-color: #e50a15;
           }

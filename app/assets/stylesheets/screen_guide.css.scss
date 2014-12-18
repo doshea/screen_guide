@@ -18,9 +18,15 @@
 $ep-outline: #aaa;
 
 // Queue
+.episodes-container{
+  margin: 0 auto;
+  display: block;
+  text-align: center;
+}
 ol.episodes {
   list-style-type: none;
   display: inline-block;
+  margin: 0 3.9rem 0 1.4rem;
 }
 li.episode {
   margin: 0.2em 0;
@@ -178,7 +184,7 @@ li.episode {
   border-bottom-right-radius: 0.5em;
   border: 1px solid $ep-outline;
   border-left: none;
-  background-color: lighten(lightgrey, 35%);
+  background-color: white;
   color: #666;
   &:hover {
     background: yellow;

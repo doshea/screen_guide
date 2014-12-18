@@ -1,7 +1,9 @@
-%h1
+%h1.center
   Queue (
   %span#queue_counter>= @queued.length
   )
+%hr
 = render partial: 'queue_list', locals: {episodes: @queued, future: false}
-%h3 Upcoming
+%h3.center Upcoming
+%hr
 = render partial: 'queue_list', locals: {episodes: @upcoming, future: true}

@@ -14,4 +14,9 @@ function ready_stuff(){
     }
     targets.click();
   })
+  $('.episode').on('click','.watch-mark',function(e){
+    var episode = $(this).closest('.episode');
+    episode.toggleClass('watched');
+    
+  });
 }

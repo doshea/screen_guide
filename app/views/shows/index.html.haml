@@ -1,12 +1,8 @@
-%h1
-  All Shows
-  - if is_admin?
-    = link_to new_admin_show_path do
-      %i.fi-plus
-%h4 Currently Airing
-= render partial: 'shows_tiles', locals: {shows: @active}
-= render partial: 'shows_table', locals: {shows: @active}
-%h4 Finished
-= render partial: 'shows_table', locals: {shows: @inactive}
 - if is_admin?
-  %p= link_to 'Add Show', new_admin_show_path, class: 'button small'
+  = link_to new_admin_show_path do
+    %i.fi-plus
+- if @current_user && (@current_user.followed_shows.count < 3)
+  %h3.alert-box.warning.center{data: {alert: true}, style: "background-color: #f08a24;border-color: #de770f;color: #FFFFFF;"}
+    It's looking a little drab in here... follow some shows to brighten things up!
+    %a.close{href: '#'} &times;
+= render partial: 'shows_tiles', locals: {shows: @shows}

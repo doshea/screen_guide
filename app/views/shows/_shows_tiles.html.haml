@@ -1,9 +1,12 @@
 .tiles
   - shows.each do |show|
-    .show.tile
+    .show.tile{class: "#{'followed' if show.followers.include?(@current_user)}"}
+      .follow-container
+        = link_to '', watch_show_path(show, watched: false), remote: true, method: :post, class: 'followed'
+        = link_to '', watch_show_path(show, watched: true), remote: true, method: :post, class: 'unfollowed'
+        %i.fi-heart
       = link_to show do
         = image_tag show.image.large_unaltered
         .metadata
           %h5 #{show.name} #{show.year_range}
           .numbers #{pluralize(show.seasons.count, 'Season')}, #{pluralize(show.episodes.count, 'Episode')}
-      

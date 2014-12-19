@@ -1,7 +1,6 @@
 class ShowsController < ApplicationController
   def index
-    @active = Show.active
-    @inactive = Show.inactive
+    @shows = Show.all
   end
 
   def show
@@ -12,7 +11,7 @@ class ShowsController < ApplicationController
   def watch
     if @current_user
       @show = Show.find(params[:id])
-      if params[:watched].present?
+      if params[:watched] == 'true'
         @current_user.followed_shows << @show unless @current_user.followed_shows.include?(@show)
       else
         @current_user.followed_shows.delete(@show)

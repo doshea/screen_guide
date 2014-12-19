@@ -19,4 +19,9 @@ function ready_stuff(){
     episode.toggleClass('watched');
     
   });
+  $('.show').on('click','.follow-container',function(e){
+    var show = $(this).closest('.show');
+    show.toggleClass('followed');
+  });
+
 }

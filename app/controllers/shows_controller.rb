@@ -1,7 +1,13 @@
 class ShowsController < ApplicationController
   def index
     @no_inherent_row = true
-    @shows = Show.all.shuffle
+    if @current_user
+      watched_shows = @current_user.followed_shows.shuffle
+      unwatched_shows = Show.all.shuffle - watched_shows
+      @shows = watched_shows + unwatched_shows
+    else
+      @shows = Show.all.shuffle
+    end
   end
 
   def show

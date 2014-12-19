@@ -19,7 +19,7 @@
           = link_to show do
             = image_tag show.image.medium_unaltered
         %td= link_to show.name, show
-        %td.center= link_to show.seasons.count, show_seasons_path(show)
+        %td.center= show.seasons.count
         %td.center= show.episodes.count
         - air_dates = show.episodes.map{|e| e.air_date}.sort
         %td= air_dates.first.strftime("%b %d, %Y") if air_dates.any?

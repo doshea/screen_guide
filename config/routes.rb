@@ -7,7 +7,6 @@ ScreenGuide::Application.routes.draw do
 
   resources :users, only: [:create]
   resources :shows, only: [:index, :show] do
-    resources :seasons, only: [:index]
     member do
       post :watch
     end

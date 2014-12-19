@@ -239,3 +239,47 @@ li.episode {
     }
   }
 }
+
+.tiles {
+  a {
+    color: inherit;
+  }
+  display: flex;
+  .tile {
+    position: relative;
+    height: 8em;
+    background-size: cover;
+    overflow: hidden;
+    a {
+      height: inherit;
+      &:hover {
+        img {
+          opacity: 0.8;
+        }
+        .metadata {
+          top: 65%;
+        }
+      }
+    }
+    img {
+      height: inherit;
+    }
+    .metadata {
+      @include transition-fast;
+      padding-left: 0.5em;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      height: 35%;
+      width: 100%;
+      background: rgba(255,255,255, 0.9);
+      border-top: black;
+      h5 {
+        margin-bottom: 0.1em;  
+      }
+      .numbers {
+        font-size: smaller;
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 class ShowsController < ApplicationController
   def index
     @no_inherent_row = true
-    @shows = Show.all
+    @shows = Show.all.shuffle
   end
 
   def show

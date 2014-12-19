@@ -3,10 +3,9 @@
   -if is_admin?
     = link_to edit_admin_show_path(@show) do
       %i.fi-pencil
-= image_tag @show.image.large_unaltered
+= image_tag @show.image, style: 'max-height: 300px;'
 - if is_admin?
   %p
-    = link_to 'Add Season', new_admin_show_season_path(@show), class: 'button small'
     = link_to 'Check for Episodes', check_for_new_episodes_admin_show_path(@show), class: 'button small', method: :post
 - if @seasons.empty?
   No seasons posted. Check back later!

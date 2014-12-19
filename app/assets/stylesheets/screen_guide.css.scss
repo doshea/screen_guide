@@ -36,7 +36,6 @@ a {
 body {
   background: whitesmoke;
 }
-
 $ep-outline: #aaa;
 
 // Queue
@@ -259,7 +258,7 @@ li.episode {
 $tile-overlay-bg: rgba(255,255,255, 0.9);
 $tile-content-border: 1px solid #777;
 .tiles {
-  margin-top: 1em;
+  margin-top: 0.5em;
   a {
     color: inherit;
   }

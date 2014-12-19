@@ -280,7 +280,7 @@ $tile-content-border: 1px solid #777;
     }
     img {
       height: inherit;
-      @include grayscale(100%);
+      @include grayscale(85%);
       opacity: 0.9;
       @include transition-fast;
     }

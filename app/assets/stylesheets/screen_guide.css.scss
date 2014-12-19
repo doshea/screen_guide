@@ -318,6 +318,8 @@ $tile-content-border: 1px solid #777;
       border-bottom: $tile-content-border;
       &:hover {
         @include scale(1.25);
+        top: -1.875em;
+        right: 0.1875em;
       }
       a {
         position: absolute;
@@ -362,8 +364,10 @@ $tile-content-border: 1px solid #777;
       width: 100%;
       background: $tile-overlay-bg;
       border-top: $tile-content-border;
+      font-size: small;
       h5 {
         margin-bottom: 0.1em;  
+        font-size: small;
       }
       .numbers {
         font-size: smaller;

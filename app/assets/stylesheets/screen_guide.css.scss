@@ -269,8 +269,8 @@ $tile-content-border: 1px solid #777;
 
   .tile {
     @include radius(0.5em);
-    border: 1px solid #555;
-    margin: 0.5em 0;
+    border: 1px solid #222;
+    margin: 0.25em 0;
     position: relative;
     height: 8em;
     background-size: cover;

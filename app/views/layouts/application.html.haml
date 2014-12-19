@@ -11,8 +11,11 @@
     = javascript_include_tag 'foundation5/modernizr'
     %header
     = render partial: 'layouts/nav'
-    .row
+    - if @no_inherent_row
       = yield
+    - else
+      .row
+        = yield
     / Foundation initialization javascript
     :javascript
       $(document).foundation(null,null,null,null,true);

@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
   def index
+    @no_inherent_row = true
     @shows = Show.all
   end
 

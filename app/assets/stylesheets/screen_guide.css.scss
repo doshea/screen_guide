@@ -259,7 +259,12 @@ $tile-content-border: 1px solid #777;
     color: inherit;
   }
   display: flex;
+  align-content: space-between;
+  flex-flow: row wrap;
+  justify-content: space-around;
+
   .tile {
+    margin: 0.5em 0;
     position: relative;
     height: 8em;
     background-size: cover;

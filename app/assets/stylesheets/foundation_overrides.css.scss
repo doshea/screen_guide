@@ -2,3 +2,15 @@ table tr td {
   padding: 0.2em 0.5em !important;
   line-height: 1em;
 }
+nav.top-bar {
+  background: black;
+  * {
+    background: black !important;
+  }
+  a:hover {
+    background: #333 !important;
+    * {
+      background: #333 !important;
+    }
+  }
+}

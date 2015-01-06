@@ -16,3 +16,5 @@
 // require dataTables/jquery.dataTables
 //
 //= require screen_guide
+
+jQuery.fn.reverse = [].reverse;

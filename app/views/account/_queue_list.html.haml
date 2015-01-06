@@ -1,4 +1,5 @@
 .episodes-container
-  %ol.episodes
+  %ol.episodes{class: "#{future ? 'future' : 'past'}"}
+    - episodes.reverse! if (defined?(reverse) && reverse)
     - episodes.each do |episode|
       = render partial: 'episodes/episode', locals: {episode: episode, future: future}

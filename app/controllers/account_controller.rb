@@ -37,6 +37,10 @@ class AccountController < ApplicationController
     end
   end
 
+  def flip_queue
+    @current_user.toggle!(:queue_oldest_first)
+  end
+
   private ###
   def profile_params
     params.require(:user).permit(:first_name, :last_name, :image)

@@ -2,8 +2,12 @@
   Queue (
   %span#queue_counter>= @queued.length
   )
+  = link_to account_flip_queue_path, remote: true, method: :patch do
+    %i.fi-arrow-down
+    %i.fi-arrow-up
 %hr
-= render partial: 'queue_list', locals: {episodes: @queued, future: false}
+- oldest_first = @current_user.queue_oldest_first
+= render partial: 'queue_list', locals: {episodes: @queued, future: false, reverse: oldest_first}
 %h3.center Upcoming
 %hr
 = render partial: 'queue_list', locals: {episodes: @upcoming, future: true}

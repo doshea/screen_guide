@@ -1,0 +1,6 @@
+var ol = $("ol.past");
+var li = ol.children("li");
+
+li.detach().reverse();
+ol.prepend(li);
+

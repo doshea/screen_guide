@@ -18,12 +18,12 @@ ScreenGuide::Application.routes.draw do
     end
   end
   
+  get '/queue' => 'account#queue'
   namespace :account do
     get '/', to: :show
     patch :update
     patch :change_password
     patch :flip_queue
-    get :queue
   end
 
   namespace :admin do

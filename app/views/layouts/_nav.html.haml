@@ -9,6 +9,11 @@
       %li.divider
     -# Right Nav Section
     %ul.right
+      %li.has-form#top-search
+        .row.collapse
+          .small-12.columns
+            = search_field_tag 'query', nil, class: 'round', autocomplete: 'off'
+            %i.fi-magnify
       %li.divider
       %li
         = link_to shows_path do
@@ -17,7 +22,7 @@
       %li.divider
       - if @current_user
         %li
-          = link_to account_queue_path do
+          = link_to queue_path do
             %i.fi-list-thumbnails
             Queue
         %li.divider

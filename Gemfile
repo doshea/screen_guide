@@ -26,10 +26,15 @@ gem 'unf'
 # Datatables is disables by default. To enable, uncomment this gem and its related js and css lines in application.js and .css
 # gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 
+#Slighty Fuzzy search. Probably needs to be replaced with Solr.
+gem 'pg_search'
+
 # Moved out of development-only so that Heroku can use it
 gem 'pry-rails'
 
 gem 'turbolinks'
+
+gem 'nilify_blanks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

@@ -9,6 +9,7 @@
 #  image      :text
 #  active     :boolean          default(FALSE)
 #  rage_id    :integer
+#  nickname   :string(255)
 #
 
 class Show < ActiveRecord::Base
@@ -20,6 +21,15 @@ class Show < ActiveRecord::Base
   has_many :finishers, through: :watch_records, source: :user
 
   mount_uploader :image, ShowPicUploader
+
+  nilify_blanks only: [:nickname]
+
+  include PgSearch
+  pg_search_scope :starts_with,
+    against: [:name, :nickname],
+    using: {
+      tsearch: {prefix: true}
+    }
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
@@ -155,6 +165,10 @@ class Show < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def nickname_or_name
+    nickname || name
   end
 
 

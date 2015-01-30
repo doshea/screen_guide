@@ -1,6 +1,6 @@
-var ol = $("ol.past");
-var li = ol.children("li");
+var queue = $("ol.past");
+var queue_episodes = queue.children("li");
 
-li.detach().reverse();
-ol.prepend(li);
+queue_episodes.detach().reverse();
+queue.prepend(queue_episodes);
 

@@ -7,16 +7,19 @@ nav.top-bar {
   position: fixed;
   width: 100%;
   z-index: 100000;
-  * {
-    background: black !important;
+  li {
+    background: black;
   }
   a:hover {
-    background: #333 !important;
-    * {
-      background: #333 !important;
-    }
+    background: #333;
   }
 }
 body > .row {
   padding-top: 3em;
+}
+.top-bar-section li a:not(.button) {
+  background-color: inherit;
+}
+.top-bar-section .has-form {
+  background-color: black; 
 }

@@ -1,6 +1,8 @@
 = form_for @show, url: url_for(controller: 'admin/shows', action: (editing ? :update : :create)), html: {multipart: true} do |f|
   = f.label :name
   = f.text_field :name
+  = f.label :nickname
+  = f.text_field :nickname
   = f.label :image
   %p Upload an image from your computer:
   = f.file_field :image

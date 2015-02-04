@@ -17,6 +17,8 @@ function ready_stuff(){
   $('.episode').on('click','.watch-mark',function(e){
     var episode = $(this).closest('.episode');
     episode.toggleClass('watched');
+    var list = $(this).closest('ol')
+    $('#queue_counter').text(list.children('li:not(.watched)').length);
     
   });
   $('.show').on('click','.follow-container',function(e){

@@ -1,4 +1,5 @@
 var id = <%= params[:id] %>;
+console.log('hello');
 $('#episode_'+id).fadeOut('fast', function(){
   this.remove();
   var current_counter = parseInt($('#queue_counter').text());

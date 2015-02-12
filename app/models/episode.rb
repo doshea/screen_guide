@@ -25,17 +25,17 @@ class Episode < ActiveRecord::Base
   validates_presence_of :air_date, :number, :title, :season_id
 
   def torrent_link
-    "http://www.google.com/#q=#{show.name}+torrent+#{shorthand}"
+    "http://www.google.com/#q=#{show.nickname_or_name}+torrent+#{shorthand}"
   end
   def kickass_link
-    "https://kickass.so/usearch/#{show.name} #{shorthand}"
+    "https://kickass.so/usearch/#{show.nickname_or_name} #{shorthand}"
   end
   def hulu_link
-    phrase = "#{show.name} season #{season.number} episode #{number}".gsub(' ','+')
+    phrase = "#{show.nickname_or_name} season #{season.number} episode #{number}".gsub(' ','+')
     "http://www.hulu.com/search?q=#{phrase}&type=episodes"
   end
   def netflix_link
-    "http://www.netflix.com/search/#{show.name}"
+    "http://www.netflix.com/search/#{show.nickname_or_name}"
   end
 
   def watched_by?(user)

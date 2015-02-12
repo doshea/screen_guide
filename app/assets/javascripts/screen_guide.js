@@ -13,7 +13,7 @@ function ready_stuff(){
       var targets = table.find('input[type=checkbox][name=watched]:checked');
     }
     targets.click();
-  })
+  });
   $('.episode').on('click','.watch-mark',function(e){
     var episode = $(this).closest('.episode');
     episode.toggleClass('watched');

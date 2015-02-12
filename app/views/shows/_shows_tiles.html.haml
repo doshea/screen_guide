@@ -9,5 +9,5 @@
       = link_to show do
         = image_tag show.image.large_unaltered
         .metadata
-          %h5 #{show.nickname} #{show.year_range}
+          %h5 #{show.nickname_or_name} #{show.year_range}
           .numbers #{pluralize(show.seasons.count, 'Season')}, #{pluralize(show.episodes.count, 'Episode')}

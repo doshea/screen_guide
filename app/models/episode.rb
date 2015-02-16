@@ -28,7 +28,7 @@ class Episode < ActiveRecord::Base
     "http://www.google.com/#q=#{show.nickname_or_name}+torrent+#{shorthand}"
   end
   def kickass_link
-    "https://kickass.so/usearch/#{show.nickname_or_name} #{shorthand}"
+    "https://kickass.to/usearch/#{show.nickname_or_name} #{shorthand}"
   end
   def hulu_link
     phrase = "#{show.nickname_or_name} season #{season.number} episode #{number}".gsub(' ','+')

@@ -4,6 +4,7 @@ ScreenGuide::Application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/login' => 'sessions#destroy'
+  get '/live_search' => 'pages#live_search'
 
   resources :users, only: [:create]
   resources :shows, only: [:index, :show] do

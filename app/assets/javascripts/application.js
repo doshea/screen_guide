@@ -15,6 +15,7 @@
 // require chart.min
 // require dataTables/jquery.dataTables
 //
+//= require global
 //= require screen_guide
 
 jQuery.fn.reverse = [].reverse;

@@ -1,0 +1,8 @@
+- if @shows.any?
+  - @shows.each do |show|
+    = link_to show do
+      %li
+        = image_tag show.image.thumb
+        = show.nickname_or_name
+- else
+  %li No results found

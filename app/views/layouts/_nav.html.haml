@@ -12,8 +12,9 @@
       %li.has-form#top-search
         .row.collapse
           .small-12.columns
-            = search_field_tag 'query', nil, class: 'round', autocomplete: 'off'
-            %i.fi-magnify
+            = search_field_tag 'query', nil, class: 'round', autocomplete: 'off', placeholder: 'Find a show'
+            %i.fi-magnifying-glass
+        %ul#live-results
       %li.divider
       %li
         = link_to shows_path do

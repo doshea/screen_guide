@@ -25,5 +25,5 @@ function ready_stuff(){
     var show = $(this).closest('.show');
     show.toggleClass('followed');
   });
-
+  global.ready();
 }

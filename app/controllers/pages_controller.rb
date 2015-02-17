@@ -6,4 +6,10 @@ class PagesController < ApplicationController
       @shows = Show.all
     end
   end
+
+  def live_search
+    max_results = 15
+    query = params[:query]
+    @shows = Show.starts_with(query).limit(max_results)
+  end
 end

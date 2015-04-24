@@ -390,3 +390,45 @@ $tile-content-border: 1px solid #777;
     }
   }
 }
+
+.season-arrow {
+  width: 0; 
+  height: 0; 
+  border-bottom: 1em solid transparent;  /* left arrow slant */
+  border-top: 1em solid transparent; /* right arrow slant */
+  border-left: 1em solid #2f2f2f; /* bottom, add background color here */
+  line-height: 0;
+  display: inline-block;
+  float: left;
+}
+.season-bar {
+  .progress {
+    display: inline-block;
+    margin: 0;
+    height: 2em;
+  }
+  .title {
+    vertical-align: middle;
+    line-height: 2em;
+    display: inline-block;
+    float: left;
+    padding: 0 0.5em;
+  }
+  .progress {
+    text-align: center;
+  }
+  .percentage {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+  }
+}
+.episode-list {
+  @include transition(all 0.5s);
+  overflow: hidden;
+  position: relative;
+  max-height: 1000px;
+  &.up {
+    max-height: 1px;
+  }
+}

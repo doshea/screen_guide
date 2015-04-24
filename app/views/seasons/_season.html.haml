@@ -1,5 +1,14 @@
 - if season.episodes.empty? 
   No episodes posted. Check back later!
 - else
-  = render partial: 'episodes/episodes_table', locals: {season: season, episodes:season.episodes, hide_season: true, hide_show: true}
-  -# = render partial: 'episodes/episodes_list', locals: {episodes: season.episodes}
+  - watched = season.episodes & @current_user.episodes
+  - total = season.episodes.length
+  - completion = watched.length / season.episodes.count.to_f * 100
+  .season-bar
+    .season-arrow
+    %span.title Season #{season.number}
+    %span.progress.small-6{class: "#{'success' if completion == 100}"}
+      %span.meter{style: "width: #{completion}%"}
+      .percentage #{watched.length} / #{total}
+    .episode-list{class: "#{'up' if completion == 100}"}
+      = render partial: 'episodes/episodes_table', locals: {season: season, episodes:season.episodes, hide_season: true, hide_show: true}

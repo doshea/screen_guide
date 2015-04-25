@@ -33,6 +33,11 @@ a {
   -moz-border-radius: $amount;
   border-radius: $amount;
 }
+@mixin rotate($degrees){
+  -ms-transform: rotate(#{$degrees}deg); /* IE 9 */
+  -webkit-transform: rotate(#{$degrees}deg); /* Chrome, Safari, Opera */
+  transform: rotate(#{$degrees}deg);
+}
 body {
   background: whitesmoke;
 }
@@ -394,13 +399,19 @@ $tile-content-border: 1px solid #777;
 .season-arrow {
   width: 0; 
   height: 0; 
-  border-bottom: 1em solid transparent;  /* left arrow slant */
-  border-top: 1em solid transparent; /* right arrow slant */
-  border-left: 1em solid #2f2f2f; /* bottom, add background color here */
+  border-bottom: .75em solid transparent;  /* left arrow slant */
+  border-top: .75em solid transparent; /* right arrow slant */
+  border-left: 1.5em solid #2f2f2f; /* bottom, add background color here */
   line-height: 0;
   display: inline-block;
   float: left;
+  margin: 4px;
+  @include transition(all 0.5s);
+  &.down {
+    @include rotate(90);
+  }
 }
+
 .season-bar {
   .progress {
     display: inline-block;

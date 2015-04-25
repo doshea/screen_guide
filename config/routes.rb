@@ -12,7 +12,6 @@ ScreenGuide::Application.routes.draw do
       post :watch
     end
   end
-  resources :seasons, only: [:show]
   resources :episodes, only: [:show] do
     member do
       post :watch

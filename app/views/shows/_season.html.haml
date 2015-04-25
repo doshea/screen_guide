@@ -1,0 +1,18 @@
+- watched = season.episodes & @current_user.episodes
+- total = season.episodes.length
+- completion = watched.length / season.episodes.count.to_f * 100
+.season-bar
+  .season-arrow{class: "#{'down' if completion < 100}"}
+  %span.title
+    Season #{season.number}
+    - if is_admin?
+      = link_to edit_admin_season_path(season) do
+        %i.fi-pencil
+  - if season.episodes.empty?
+    No episodes posted. Check back later!
+  - else
+    %span.progress.small-6{class: "#{'success' if completion == 100}"}
+      %span.meter{style: "width: #{completion}%"}
+      .percentage #{watched.length} / #{total}
+    .episode-list{class: "#{'up' if completion == 100}"}
+      = render partial: 'episodes/episodes_table', locals: {season: season, episodes:season.episodes, hide_season: true, hide_show: true}

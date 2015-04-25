@@ -2,7 +2,7 @@
   = link_to '', episode.show, class: 'pic-link', style: "background-image: url(#{episode.show.image.medium_unaltered});"
   .general
     .numbers
-      = link_to "Season #{'%02d' % episode.season.number}",episode.season
+      Season #{'%02d' % episode.season.number}
       ,
       = link_to "Ep #{'%02d' % episode.number}", episode\
       of

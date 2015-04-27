@@ -1,5 +1,5 @@
 ScreenGuide::Application.routes.draw do
-  root to: 'pages#index'
+  root to: 'shows#index'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

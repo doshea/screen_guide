@@ -406,6 +406,7 @@ $tile-content-border: 1px solid #777;
   display: inline-block;
   float: left;
   margin: 4px;
+  cursor: pointer;
   @include transition(all 0.5s);
   &.down {
     @include rotate(90);

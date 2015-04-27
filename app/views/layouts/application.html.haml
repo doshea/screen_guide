@@ -2,9 +2,10 @@
 %html
   %head
     %meta{:charset => "utf-8"}
-    %title ScreenGuide
     = stylesheet_link_tag    "application", :media => "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
+    %title
+      = yield(:title) + title_backup
     = csrf_meta_tags
   %body
     = javascript_include_tag 'foundation5/foundation.min'

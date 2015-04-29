@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429073052) do
+ActiveRecord::Schema.define(version: 20150429185118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "episodes", force: true do |t|
-    t.string   "title"
+  create_table "episodes", force: :cascade do |t|
+    t.string   "title",      limit: 255
     t.integer  "number"
     t.date     "air_date"
     t.integer  "season_id"
@@ -25,58 +25,53 @@ ActiveRecord::Schema.define(version: 20150429073052) do
     t.datetime "updated_at"
   end
 
-  create_table "episodes_users", id: false, force: true do |t|
-    t.integer "episode_id"
-    t.integer "user_id"
-  end
-
-  create_table "seasons", force: true do |t|
+  create_table "seasons", force: :cascade do |t|
     t.integer  "number"
     t.integer  "show_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "shows", force: true do |t|
-    t.string   "name"
+  create_table "shows", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "image"
-    t.boolean  "active",     default: false
+    t.boolean  "active",                 default: false
     t.integer  "rage_id"
-    t.string   "nickname"
+    t.string   "nickname",   limit: 255
   end
 
-  create_table "shows_users", id: false, force: true do |t|
+  create_table "shows_users", id: false, force: :cascade do |t|
     t.integer "show_id"
     t.integer "user_id"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.string   "username"
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name",         limit: 255
+    t.string   "last_name",          limit: 255
+    t.string   "email",              limit: 255
+    t.string   "username",           limit: 255
     t.boolean  "is_admin"
-    t.string   "password_digest"
-    t.string   "image"
-    t.string   "auth_token"
+    t.string   "password_digest",    limit: 255
+    t.string   "image",              limit: 255
+    t.string   "auth_token",         limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "queue_oldest_first", default: true
+    t.boolean  "queue_oldest_first",             default: true
   end
 
-  create_table "watched_episodes", id: false, force: true do |t|
+  create_table "watched_episodes", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "episode_id"
   end
 
-  create_table "watched_seasons", id: false, force: true do |t|
+  create_table "watched_seasons", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "season_id"
   end
 
-  create_table "watched_shows", id: false, force: true do |t|
+  create_table "watched_shows", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "show_id"
   end

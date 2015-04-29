@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_and_belongs_to_many :followed_shows, class_name: 'Show', join_table: 'shows_users', association_foreign_key: 'show_id'
-  has_and_belongs_to_many :episodes
+
   has_and_belongs_to_many :watched_shows, class_name: 'Show', join_table: 'watched_shows', association_foreign_key: 'show_id'
   has_and_belongs_to_many :watched_seasons, class_name: 'Season', join_table: 'watched_seasons', association_foreign_key: 'season_id'
   has_and_belongs_to_many :watched_episodes, class_name: 'Episode', join_table: 'watched_episodes', association_foreign_key: 'episode_id'

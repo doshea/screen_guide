@@ -16,7 +16,6 @@ class Episode < ActiveRecord::Base
 
   has_one :show, through: :season
 
-  has_and_belongs_to_many :users #TODO: remove this in favor of watchers
   has_and_belongs_to_many :watchers, class_name: 'User', join_table: 'watched_episodes', association_foreign_key: 'user_id'
 
   scope :by_number, -> { order(number: :asc) }

@@ -21,7 +21,9 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :followed_shows, class_name: 'Show', join_table: 'shows_users', association_foreign_key: 'show_id'
   has_and_belongs_to_many :episodes
-  has_many :watch_records
+  has_and_belongs_to_many :watched_shows, class_name: 'Show', join_table: 'watched_shows', association_foreign_key: 'show_id'
+  has_and_belongs_to_many :watched_seasons, class_name: 'Season', join_table: 'watched_seasons', association_foreign_key: 'season_id'
+  has_and_belongs_to_many :watched_episodes, class_name: 'Episode', join_table: 'watched_episodes', association_foreign_key: 'episode_id'
 
   mount_uploader :image, AccountPicUploader
   
@@ -75,9 +77,110 @@ class User < ActiveRecord::Base
   end
 
   def watch!(watchable)
-
+    if watchable.is_a? Show
+      watch_show! watchable
+    elsif watchable.is_a? Season
+      watch_season! watchable
+    elsif watchable.is_a? Episode
+      watch_episode! watchable
+    else
+      raise "That object(#{watchable}) is not a Show, Season or Episode."
+    end
   end
-  def unwatch(watchable)
 
+  def watch_show!(show)
+    unless has_watched? show
+      watched_episodes.delete(show.episodes)
+      watched_seasons.delete(show.seasons)
+      watched_shows << show
+    end
+  end
+
+  def watch_season!(season)
+    unless has_watched? season
+      sister_watched_seasons = watched_seasons.where(show_id: season.show.id)
+      if season.show.seasons.count - sister_watched_seasons.count == 1
+        watch_season!(episode.season)
+      else
+        watched_episodes.delete(season.episodes)
+        watched_seasons << season
+      end
+    end
+  end
+
+  def watch_episode!(episode)
+    unless has_watched? episode
+      sister_watched_episodes = watched_episodes.where(season_id: episode.season.id)
+      if episode.season.episodes.count - sister_watched_episodes.count == 1
+        watch_season!(episode.season)
+      else
+        watched_episodes << episode
+      end
+    end
+  end
+
+  def has_watched?(watchable)
+    if watchable.is_a? Episode
+      if watchable.in? watched_episodes
+        return true
+      else
+        watchable = watchable.season
+      end
+    end
+    if watchable.is_a? Season
+      if watchable.in? watched_seasons
+        return true
+      else
+        watchable = watchable.show
+      end
+    end
+    if watchable.is_a? Show
+      if watchable.in? watched_shows
+        return true
+      end
+    end 
+    return false
+  end
+
+  def unwatch!(watchable)
+    if watchable.is_a? Show
+      unwatch_show! watchable
+    elsif watchable.is_a? Season
+      unwatch_season! watchable
+    elsif watchable.is_a? Episode
+      watch_episode! watchable
+    else
+      raise "That object(#{watchable}) is not a Show, Season or Episode."
+    end
+  end
+  def unwatch_show!(show)
+    watched_shows.delete(show)
+    watched_seasons.delete(show.seasons)
+    watched_episodes.delete(show.episodes)
+  end
+  def unwatch_season!(season)
+    show = season.show
+    if show.in? self.watched_shows
+      self.watched_shows.delete(show)
+      sister_seasons = show.seasons - [season]
+      self.watched_seasons += sister_seasons
+    end
+    self.watched_seasons.delete(season)
+    self.watched_episodes.delete(season.episodes)
+  end
+  #TODO build this out
+  def unwatch_episode!(episode)
+    season = episode.season
+    show = season.show
+    if show.in? self.watched_shows
+      self.watched_shows.delete(show)
+      self.watched_seasons += show.seasons
+    end
+    if season.in? self.watched_seasons
+      self.watched_seasons.delete(season)
+      sister_episodes = season.episodes - [episode]
+      self.watched_episodes += sister_episodes
+    end
+    self.watched_episodes.delete(episode)
   end
 end

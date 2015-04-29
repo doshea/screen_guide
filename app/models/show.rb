@@ -17,8 +17,7 @@ class Show < ActiveRecord::Base
   has_many :episodes, through: :seasons
 
   has_and_belongs_to_many :followers, class_name: 'User', join_table: 'shows_users', association_foreign_key: 'user_id'
-  has_many :watch_records, as: :watchable
-  has_many :finishers, through: :watch_records, source: :user
+  has_and_belongs_to_many :watchers, class_name: 'User', join_table: 'watched_shows', association_foreign_key: 'user_id'
 
   mount_uploader :image, ShowPicUploader
 

@@ -6,9 +6,11 @@ class EpisodesController < ApplicationController
     if @current_user
       @episode = Episode.find(params[:id])
       if params[:watched] == 'true'
-        @current_user.episodes << @episode unless @current_user.episodes.include?(@episode)
+        # @current_user.episodes << @episode unless @current_user.episodes.include?(@episode)
+        @current_user.watch! @episode
       else
-        @current_user.episodes.delete(@episode)
+        @current_user.unwatch! @episode
+        # @current_user.episodes.delete(@episode)
       end
     end
     render nothing: true

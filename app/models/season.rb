@@ -11,13 +11,12 @@
 
 class Season < ActiveRecord::Base
   belongs_to :show
-  has_many :watch_records, as: :watchable
-  has_many :finishers, through: :watch_records, source: :user
+  has_many :episodes, -> { order(:number) }, dependent: :destroy
 
+  has_and_belongs_to_many :watchers, class_name: 'User', join_table: 'watched_seasons', association_foreign_key: 'user_id'
 
   scope :by_number, -> { order(number: :asc) }
 
-  has_many :episodes, -> { order(:number) }, dependent: :destroy
 
   def watched_by?(user)
     if show.watched_by?(user)
@@ -26,6 +25,15 @@ class Season < ActiveRecord::Base
       self
     else
       false
+    end
+  end
+
+  def add_episode(ep)
+    episodes << ep
+    new_number = ep.number
+    lower_eps = episodes.where('number < ?', new_number)
+    finishers.each do |finisher|
+      
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122211541) do
+ActiveRecord::Schema.define(version: 20150429073052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,12 +66,19 @@ ActiveRecord::Schema.define(version: 20150122211541) do
     t.boolean  "queue_oldest_first", default: true
   end
 
-  create_table "watch_records", id: false, force: true do |t|
-    t.integer  "user_id"
-    t.integer  "watchable_id"
-    t.string   "watchable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "watched_episodes", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "episode_id"
+  end
+
+  create_table "watched_seasons", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "season_id"
+  end
+
+  create_table "watched_shows", id: false, force: true do |t|
+    t.integer "user_id"
+    t.integer "show_id"
   end
 
 end

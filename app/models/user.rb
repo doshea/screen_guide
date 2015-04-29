@@ -72,10 +72,6 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column]) #may need a colon
   end
 
-  def has_watched?(watchable)
-    watchable.watched_by?(self)
-  end
-
   def watch!(watchable)
     if watchable.is_a? Show
       watch_show! watchable
@@ -100,7 +96,7 @@ class User < ActiveRecord::Base
     unless has_watched? season
       sister_watched_seasons = watched_seasons.where(show_id: season.show.id)
       if season.show.seasons.count - sister_watched_seasons.count == 1
-        watch_season!(episode.season)
+        watch_show!(season.show)
       else
         watched_episodes.delete(season.episodes)
         watched_seasons << season
@@ -148,7 +144,7 @@ class User < ActiveRecord::Base
     elsif watchable.is_a? Season
       unwatch_season! watchable
     elsif watchable.is_a? Episode
-      watch_episode! watchable
+      unwatch_episode! watchable
     else
       raise "That object(#{watchable}) is not a Show, Season or Episode."
     end

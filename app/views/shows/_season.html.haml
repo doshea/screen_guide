@@ -1,8 +1,9 @@
-- watched = is_logged_in? ? (season.episodes & @current_user.episodes) : []
-- completion = is_logged_in? ? (watched.length / season.episodes.count.to_f * 100) : 0
+- watched = is_logged_in? && @current_user.has_watched?(season)
+- watched_episodes = watched ? season.episodes.count : (season.episodes & @current_user.watched_episodes).length
+- completion = is_logged_in? ? (watched_episodes / season.episodes.count.to_f * 100) : 0
 - total = season.episodes.length
 .season-bar
-  .season-arrow{class: "#{'down' unless is_logged_in? && completion == 100}"}
+  .season-arrow{class: "#{'down' unless watched}"}
   %span.title
     Season #{season.number}
     - if is_admin?
@@ -11,8 +12,8 @@
   - if season.episodes.empty?
     No episodes posted. Check back later!
   - else
-    %span.progress.small-6{class: "#{'success' if completion == 100}"}
+    %span.progress.small-6{class: "#{'success' if watched}"}
       %span.meter{style: "width: #{completion}%"}
-      .percentage #{watched.try(:length)} / #{total}
-    .episode-list{class: "#{'up' if completion == 100}"}
+      .percentage #{watched_episodes} / #{total}
+    .episode-list{class: "#{'up' if watched}"}
       = render partial: 'episodes/episodes_table', locals: {season: season, episodes:season.episodes, hide_season: true, hide_show: true}

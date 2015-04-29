@@ -21,19 +21,21 @@ class AccountController < ApplicationController
     @west_coast_time = Time.now - hr_adjustment.hours
     @west_coast_date = Date.parse(@west_coast_time.to_s)
 
-    current_episode_ids = @current_user.episodes.map(&:id)
-    @unwatched_followed = Episode.joins(:show).where(shows: {id: @current_user.followed_shows.map(&:id)}).where.not(id: current_episode_ids).by_air_date
+    # New SQL
+    unfinished_shows = @current_user.followed_shows.where.not(id: @current_user.watched_shows)
+    unfinished_seasons = Season.joins(:show).where(shows: {id: unfinished_shows.map(&:id)}).where.not(id: @current_user.watched_seasons)
+    @unfinished_episodes = Episode.joins(:season).where(seasons: {id: unfinished_seasons.map(&:id)}).where.not(id: @current_user.watched_episodes).by_air_date
 
     @queued, @today, @upcoming = [], [], []
 
-    while (@unwatched_followed.any? && (@unwatched_followed.first.air_date < @west_coast_date))
-      @queued << @unwatched_followed.to_a.shift
+    while (@unfinished_episodes.any? && (@unfinished_episodes.first.air_date < @west_coast_date))
+      @queued << @unfinished_episodes.to_a.shift
     end
-    while (@unwatched_followed.any? && (@unwatched_followed.first.air_date == @west_coast_date))
-      @today << @unwatched_followed.to_a.shift
+    while (@unfinished_episodes.any? && (@unfinished_episodes.first.air_date == @west_coast_date))
+      @today << @unfinished_episodes.to_a.shift
     end
-    while (@unwatched_followed.any? && (@unwatched_followed.first.air_date > @west_coast_date))
-      @upcoming << @unwatched_followed.to_a.shift
+    while (@unfinished_episodes.any? && (@unfinished_episodes.first.air_date > @west_coast_date))
+      @upcoming << @unfinished_episodes.to_a.shift
     end
   end
 

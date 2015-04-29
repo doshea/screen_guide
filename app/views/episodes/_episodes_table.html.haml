@@ -23,7 +23,7 @@
         - if is_logged_in?
           %td
             = form_tag watch_episode_path(episode), remote: true do
-              = check_box_tag :watched, 1, @current_user.episodes.include?(episode), id: nil
+              = check_box_tag :watched, 1, @current_user.has_watched?(episode), id: nil
         - if is_admin?
           %td
             = link_to edit_admin_episode_path(episode) do

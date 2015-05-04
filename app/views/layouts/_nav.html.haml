@@ -21,34 +21,8 @@
           %i.fi-monitor
           Shows
       %li.divider
-      - if @current_user
-        %li
-          = link_to queue_path do
-            %i.fi-list-thumbnails
-            Queue
-        %li.divider
-        %li.has-dropdown
-          = link_to '#' do
-            = @current_user.username
-          %ul.dropdown
-            %li
-              = link_to account_path do
-                %i.fi-torso
-                Account
-            %li
-              = link_to login_path, method: :delete do
-                %i.fi-power{style: 'color: #f55;'}
-                Log out
-        %li.divider
-
+      - if is_logged_in?
+        = render partial: 'layouts/partials/user_dropdown'
       - else
-        %li
-          = link_to login_path do
-            %i.fi-pencil
-            Register
-        %li.divider
-        %li
-          = link_to login_path do
-            %i.fi-power{style: 'color: #5f5;'}
-            Log in
+        = render partial: 'layouts/partials/anonymous'
       %li.divider

@@ -444,3 +444,20 @@ $tile-content-border: 1px solid #777;
     max-height: 1px;
   }
 }
+
+#user-menu {
+  #profile-tease {
+    img {
+      max-width: 2.08em;
+      max-height: 60%;
+      vertical-align: middle;
+    }
+  }
+  & > .dropdown {
+    top: 98%;
+    right: -2px;
+  }
+  .fi-power {
+    color: #f55; //makes the logout red
+  }
+}

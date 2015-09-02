@@ -19,8 +19,8 @@ class AccountPicUploader < CarrierWave::Uploader::Base
   end
 
   # end
-  def default_url
-    ActionController::Base.helpers.asset_path('images/default_user_img.jpg');
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path('default_user_img.jpg');
   end
 
   def extension_white_list

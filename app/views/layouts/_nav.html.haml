@@ -6,6 +6,8 @@
   %section.top-bar-section
     -# Left Nav Section
     %ul.left
+      - if is_admin?
+        =render partial: 'layouts/partials/admin'
       %li.divider
     -# Right Nav Section
     %ul.right

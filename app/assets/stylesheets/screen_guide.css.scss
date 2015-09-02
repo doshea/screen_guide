@@ -319,11 +319,6 @@ $tile-content-border: 1px solid #777;
       top: -1.5em;
       border-left: $tile-content-border;
       border-bottom: $tile-content-border;
-      &:hover {
-        @include scale(1.25);
-        top: -1.875em;
-        right: 0.1875em;
-      }
       a {
         position: absolute;
         display: inline-block;

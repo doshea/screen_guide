@@ -1,0 +1,17 @@
+%li.divider
+%li.has-dropdown
+  %a
+    %i.fi-sheriff-badge
+    Admin
+  %ul.dropdown
+    %li.has-dropdown
+      = link_to 'Indices', '#'
+      %ul.dropdown
+        %li= link_to 'Shows', '#'
+        %li= link_to 'Seasons', '#'
+        %li= link_to 'Episodes', '#'
+        %li= link_to 'Users', '#'
+    %li
+      = link_to 'Emails', '#'
+    %li
+      = link_to 'Clone User', '#'
